@@ -1,0 +1,117 @@
+<div class="demo-tab-content">
+    <mat-card style="padding:0; margin-top:10px;">
+        <mat-card-subtitle style="padding:20px 10px 0 10px;text-align:left;background-color:lightgray;">
+            <mat-form-field class="example-full-width" style="width:4cm">
+
+
+                <input matInput placeholder="" value="Sajal Agarwal" disabled style="font-size: 2ch">
+            </mat-form-field>
+        </mat-card-subtitle>
+        <mat-card-content>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    
+            <table>
+                <tr>
+                    <td>
+                        <mat-card style="width:14cm;height:4cm">
+                            <mat-card-subtitle style="padding:20px 10px 0 10px;text-align:left;background-color:lightgray;">
+
+                                <label for="" style="font-size: 20px">Project List</label>
+
+                            </mat-card-subtitle>
+                            <mat-card-content>
+                                <label for=""><b>Smart Phone Projects:</b>&nbsp;&nbsp;&nbsp;</label>
+                             <label for="" *ngFor="let pl of myProjectList; let i = index">
+                                    {{pl.viewValue}}&nbsp;&nbsp;&nbsp;
+                             </label> <br><br>
+                             <label for=""><b>OSU Projects:</b> &nbsp;&nbsp;&nbsp;</label>
+                             <label for="" *ngFor="let os of OSU; let i = index">
+                                    {{os.viewValue}}&nbsp;&nbsp;&nbsp;
+                             </label> <br><br>
+                             <label for=""><b>Platform Projects:</b> &nbsp;&nbsp;&nbsp;</label>
+                             <label for="" *ngFor="let pf of Platform; let i = index">
+                                    {{pf.viewValue}}&nbsp;&nbsp;&nbsp;
+                             </label> <br><br>
+                            </mat-card-content>
+                        </mat-card>
+
+                    </td>
+                    <td>
+                        <mat-card style="width:14cm;height:4cm">
+                            <mat-card-subtitle style="padding:20px 10px 0 10px;text-align:left;background-color:lightgray;">
+
+                                <label for="" style="font-size: 20px">Smart Phone</label>
+
+                            </mat-card-subtitle>
+                            <mat-card-content>
+
+                                <mat-checkbox *ngFor="let sp of smartPhone; let i = index"
+                                type="checkbox" 
+                                [disabled]="type"
+                                (change)="onSaveUsernameChanged($event , sp.viewValue)">
+                                {{sp.viewValue}}&nbsp;&nbsp;&nbsp;
+                                </mat-checkbox>
+
+                            </mat-card-content>
+                        </mat-card>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <mat-card style="width:14cm;height:3cm">
+                            <mat-card-subtitle style="padding:20px 10px 0 10px;text-align:left;background-color:lightgray;">
+
+                                <label for="" style="font-size: 20px">OSU</label>
+
+                            </mat-card-subtitle>
+                            <mat-card-content>
+
+                                    <mat-checkbox *ngFor="let osu of osuProjects; let i = index"
+                                    type="checkbox" 
+                                [disabled]="type"
+                                (change)="onSaveUsernameChangedOsu($event , osu.viewValue)">
+                                        
+                                            {{osu.viewValue}}&nbsp;&nbsp;&nbsp;
+                                            
+                                        </mat-checkbox>
+        
+                            </mat-card-content>
+                        </mat-card>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <mat-card style="width:14cm;height:3cm">
+                            <mat-card-subtitle style="padding:20px 10px 0 10px;text-align:left;background-color:lightgray;">
+
+                                <label for="" style="font-size: 20px">Platform/Function</label>
+
+                            </mat-card-subtitle>
+                            <mat-card-content>
+
+                                    <mat-checkbox *ngFor="let plf of platformProjects; let i = index"
+                                    type="checkbox" 
+                                [disabled]="type"
+                                (change)="onSaveUsernameChangedPlatform($event , plf.viewValue)">
+                                            {{plf.viewValue}}&nbsp;&nbsp;&nbsp;
+                                        </mat-checkbox>
+        
+                            </mat-card-content>
+                        </mat-card>
+                    </td>
+                </tr>
+            </table>
+
+
+
+   
