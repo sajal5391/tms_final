@@ -53,15 +53,15 @@ public class DetailsRestAPI {
                     Gson g = new Gson();
                     Type listType = new TypeToken<List<JoinEmpSkills>>() {
                     }.getType();
-                    return g.toJson(list, listType);
+                     message = Util.toJson("true", g.toJson(list, listType), null);
                 } else {
-                    message = Util.toJson("Success", "List is Empty");
+                    message = Util.toJson("true", "No Data  Found");
                 }
             } else {
-                message = Util.toJson("Success", "Something wrong with DB Connection");
+                message = Util.toJson("false", "Something wrong with in DB Connection/Exception");
             }
         } catch (Exception e) {
-            message = Util.toJson("Failure", e.getMessage());
+            message = Util.toJson("false", e.getMessage());
         }
         return message;
     }
@@ -83,7 +83,7 @@ public class DetailsRestAPI {
                     message = Util.toJson("Success", "List is Empty");
                 }
             } else {
-                message = Util.toJson("Success", "Something wrong with DB Connection");
+                message = Util.toJson("Success", "Something wrong with in DB Connection/Exception");
             }
         } catch (Exception e) {
             message = Util.toJson("Failure", e.getMessage());
@@ -109,25 +109,23 @@ public class DetailsRestAPI {
                     List<JoinEmpSkills> list = new EmployeeDAOImpl().getLeftJoin("emp_details.emp_email like '%" + log.getUsername() + "%'");
                     if (list != null) {
                         if (!list.isEmpty()) {
-                            Type listType = new TypeToken<List<JoinEmpSkills>>() {
-                            }.getType();
-                            return g.toJson(list, listType);
+                            message = Util.toJson("true",g.toJson(list.get(0), JoinEmpSkills.class),null);
                         } else {
-                            message = Util.toJson("Success", "List is Empty");
+                            message = Util.toJson("true", "No Data");
                         }
                     } else {
-                        message = Util.toJson("Failure", "Something wrong with DB Connection");
+                        message = Util.toJson("false", "Something wrong with in DB Connection/Exception");
                     }
 
                 } else {
-                    message = Util.toJson("Failure", "Login Failed, Invalid Credential");
+                    message = Util.toJson("false", "Login Failed, Invalid Credential");
                 }
             } else {
-                message = Util.toJson("Failure", "Gson Failed to load Object");             
+                message = Util.toJson("false", "Gson Failed to load Object");             
             }
 
         } catch (Exception e) {
-            message = Util.toJson("Failure", e.getMessage());
+            message = Util.toJson("false", e.getMessage());
         }
         return message;
     }
@@ -174,15 +172,15 @@ public class DetailsRestAPI {
                     skill = new SkillSetDAOImpl().getSkillSet("emp_id = '" + info.getEmp_id() + "'");
                     join = new JoinEmpSkills(info, skill);
                     if (info != null) {
-                        message = Util.toJson(join);
+                        message = Util.toJson("true", Util.toJson(join), null);
                     } else {
-                        message = Util.toJson("Success", "No Result Found");
+                        message = Util.toJson("true", "No Result Found");
                     }
                 } else {
-                    message = Util.toJson("Failure", "Something wrong with DB Connection");
+                    message = Util.toJson("false", "Something wrong with in DB Connection/Exception");
                 }
             } catch (Exception e) {
-                message = Util.toJson("Failure", e.getMessage());
+                message = Util.toJson("false", e.getMessage());
             }
         }
         return message;

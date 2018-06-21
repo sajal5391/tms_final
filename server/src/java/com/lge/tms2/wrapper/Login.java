@@ -21,6 +21,9 @@ public class Login implements Serializable {
      * @return the username
      */
     public String getUsername() {
+        if(username != null && username.endsWith("@lge.com")) {
+            username = username.substring(0, username.length() - "@lge.com".length());
+        }
         return username;
     }
 

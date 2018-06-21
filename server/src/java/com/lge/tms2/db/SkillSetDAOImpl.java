@@ -126,18 +126,18 @@ public class SkillSetDAOImpl extends DataBase implements SkillSetDAO{
 
         PreparedStatement ps = null;
         try {            
-            ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`emp_id`,`psk_level1`,`psk_level2`,`psk_level3`,`ssk_level1`,`ssk_level2`, `ssk_level3`,`lng1`, `lng1_level`, `lng2`, `lng2_level`,`os`, `os_level`) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?, ?, ?)");
+            ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`emp_id`,`primary_skill_one`,`primary_skill_two`,`primary_skill_three`,`secondary_skill_one`,`secondary_skill_two`, `secondary_skill_three`,`language_one`, `language_one_level`, `language_two`, `language_two_level`,`os`, `os_level`) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?, ?, ?)");
             ps.setString(1, employee.getEmp_id());
-            ps.setString(2, employee.getPsk_level1());
-            ps.setString(3, employee.getPsk_level2());
-            ps.setString(4, employee.getPsk_level3());
-            ps.setString(5, employee.getSsk_level1());
-            ps.setString(6, employee.getSsk_level2());
-            ps.setString(7, employee.getSsk_level3());
-            ps.setString(8, employee.getLng1());
-            ps.setString(9, employee.getLng1_level());
-            ps.setString(10, employee.getLng2());
-            ps.setString(11, employee.getLng2_level());
+            ps.setString(2, employee.getPrimary_skill_one());
+            ps.setString(3, employee.getPrimary_skill_two());
+            ps.setString(4, employee.getPrimary_skill_three());
+            ps.setString(5, employee.getSecondary_skill_one());
+            ps.setString(6, employee.getSecondary_skill_two());
+            ps.setString(7, employee.getSecondary_skill_three());
+            ps.setString(8, employee.getLanguage_one());
+            ps.setString(9, employee.getLanguage_one_level());
+            ps.setString(10, employee.getLanguage_two());
+            ps.setString(11, employee.getLanguage_two_level());
             ps.setString(12, employee.getOs());
             ps.setString(13, employee.getOs_level());
             
@@ -179,18 +179,18 @@ public class SkillSetDAOImpl extends DataBase implements SkillSetDAO{
 
         try {
 
-            ps = con.prepareStatement("UPDATE `" + tableName + "` SET `psk_level1` = ?,`psk_level2` = ?,`psk_level3` = ?,`ssk_level1` = ?,`ssk_level2` = ?, `ssk_level3` = ?,`lng1` = ?, `lng1_level` = ?, `lng2` = ?, `lng2_level` = ?,`os` = ?, `os_level` = ? WHERE `emp_id`= ?");
+            ps = con.prepareStatement("UPDATE `" + tableName + "` SET `primary_skill_one` = ?,`primary_skill_two` = ?,`primary_skill_three` = ?,`secondary_skill_one` = ?,`secondary_skill_two` = ?, `secondary_skill_three` = ?,`language_one` = ?, `language_one_level` = ?, `language_two` = ?, `language_two_level` = ?,`os` = ?, `os_level` = ? WHERE `emp_id`= ?");
 
-            ps.setString(1, skillSet.getPsk_level1());
-            ps.setString(2, skillSet.getPsk_level2());
-            ps.setString(3, skillSet.getPsk_level3());
-            ps.setString(4, skillSet.getSsk_level1());
-            ps.setString(5, skillSet.getSsk_level2());
-            ps.setString(6, skillSet.getSsk_level3());
-            ps.setString(7, skillSet.getLng1());
-            ps.setString(8, skillSet.getLng1_level());
-            ps.setString(9, skillSet.getLng2());
-            ps.setString(10, skillSet.getLng2_level());
+            ps.setString(1, skillSet.getPrimary_skill_one());
+            ps.setString(2, skillSet.getPrimary_skill_two());
+            ps.setString(3, skillSet.getPrimary_skill_three());
+            ps.setString(4, skillSet.getSecondary_skill_one());
+            ps.setString(5, skillSet.getSecondary_skill_two());
+            ps.setString(6, skillSet.getSecondary_skill_three());
+            ps.setString(7, skillSet.getLanguage_one());
+            ps.setString(8, skillSet.getLanguage_one_level());
+            ps.setString(9, skillSet.getLanguage_two());
+            ps.setString(10, skillSet.getLanguage_two_level());
             ps.setString(11, skillSet.getOs());
             ps.setString(12, skillSet.getOs_level());
             ps.setString(13,skillSet.getEmp_id());
