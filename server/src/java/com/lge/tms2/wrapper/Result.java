@@ -16,10 +16,17 @@ public class Result implements Serializable {
     private static final long serialVersionUID = 1L; 
     
     private String status;
+    private String data;
     private String message;
 
-    public Result(String Status, String message) {
-        this.status = Status;
+    public Result(String status,String data, String message) {
+        this.status = status;
+        this.data = data;
+        this.message = message;
+    }
+    
+    public Result(String status, String message) {
+        this.status = status;
         this.message = message;
     }
 
@@ -52,6 +59,20 @@ public class Result implements Serializable {
      */
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    /**
+     * @return the data
+     */
+    public String getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data) {
+        this.data = data;
     }
     
 }

@@ -42,27 +42,27 @@ public class DataBase {
         empInfo.setEmp_email(result.getString("emp_email"));
         empInfo.setEmp_image(result.getString("emp_image"));
         empInfo.setEmp_group(result.getString("emp_group"));
-        empInfo.setEmp_number(result.getInt("emp_number"));
-        empInfo.setEmp_dsgn(result.getString("emp_dsgn"));
+        empInfo.setEmp_number(result.getString("emp_number"));
+        empInfo.setEmp_designation(result.getString("emp_designation"));
         empInfo.setEmp_domain(result.getString("emp_domain"));
-        empInfo.setApp_level1(result.getString("app_level1"));
-        empInfo.setApp_level2(result.getString("app_level2"));
+        empInfo.setApprover_level_one(result.getString("approver_level_one"));
+        empInfo.setApprover_level_two(result.getString("approver_level_two"));
     }
 
     void readFromResultSet(SkillSet empInfo, ResultSet result) throws SQLException {
         empInfo.setEmp_id(result.getString("emp_id"));
-        empInfo.setLng1(result.getString("lng1"));
-        empInfo.setLng1_level(result.getString("lng1_level"));
-        empInfo.setLng2(result.getString("lng2"));
-        empInfo.setLng2_level(result.getString("lng2_level"));
+        empInfo.setLanguage_one(result.getString("language_one"));
+        empInfo.setLanguage_one_level(result.getString("language_one_level"));
+        empInfo.setLanguage_two(result.getString("language_two"));
+        empInfo.setLanguage_two_level(result.getString("language_two_level"));
         empInfo.setOs(result.getString("os"));
         empInfo.setOs_level(result.getString("os_level"));
-        empInfo.setPsk_level1(result.getString("psk_level1"));
-        empInfo.setPsk_level2(result.getString("psk_level2"));
-        empInfo.setPsk_level3(result.getString("psk_level3"));
-        empInfo.setSsk_level1(result.getString("ssk_level1"));
-        empInfo.setSsk_level2(result.getString("ssk_level2"));
-        empInfo.setSsk_level3(result.getString("ssk_level3"));
+        empInfo.setPrimary_skill_one(result.getString("primary_skill_one"));
+        empInfo.setPrimary_skill_two(result.getString("primary_skill_two"));
+        empInfo.setPrimary_skill_three(result.getString("primary_skill_three"));
+        empInfo.setSecondary_skill_one(result.getString("secondary_skill_one"));
+        empInfo.setSecondary_skill_two(result.getString("secondary_skill_two"));
+        empInfo.setSecondary_skill_three(result.getString("secondary_skill_three"));
     }
 
     void readFromResultSet(ProjectDetails pd, ResultSet result) throws SQLException {
@@ -70,8 +70,8 @@ public class DataBase {
         pd.setProject_name(result.getString("project_name"));
         pd.setProject_code(result.getString("project_code"));
         pd.setProject_type(result.getString("project_type"));
-        pd.setProject_cty(result.getString("project_cty"));
-        pd.setMc_cty(result.getString("mc_cty"));
+        pd.setProject_cty(result.getString("project_category"));
+        pd.setMc_cty(result.getString("mc_category"));
         pd.setStart_date(result.getString("start_date"));
         pd.setEnd_date(result.getString("end_date"));
         pd.setProject_region(result.getString("project_region"));
@@ -187,6 +187,7 @@ public class DataBase {
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
             list = null;
         } finally {
             try {

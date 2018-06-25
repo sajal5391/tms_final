@@ -133,4 +133,9 @@ public class Util {
         return  g.toJson(r, Result.class);
     }
     
+    public static String toJson(String status, String data, String message) {
+        Gson g = new Gson();
+        Result r = new Result(status, data, message);
+        return  g.toJson(r, Result.class);
+    }
 }

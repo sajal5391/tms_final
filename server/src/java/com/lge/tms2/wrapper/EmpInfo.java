@@ -17,13 +17,13 @@ public class EmpInfo implements Serializable {
     private String emp_id;
     private String emp_name;
     private String emp_email;
-    private String emp_image;    
-    private String emp_dsgn;
-    private int emp_number;    
+    private String emp_image;
+    private String emp_designation;
+    private String emp_number;
     private String emp_group;
     private String emp_domain;
-    private String app_level1;
-    private String app_level2;
+    private String approver_level_one;
+    private String approver_level_two;
 
     /**
      * @return the emp_id
@@ -54,17 +54,17 @@ public class EmpInfo implements Serializable {
     }
 
     /**
-     * @return the emp_dsgn
+     * @return the emp_designation
      */
-    public String getEmp_dsgn() {
-        return emp_dsgn;
+    public String getEmp_designation() {
+        return emp_designation;
     }
 
     /**
-     * @param emp_dsgn the emp_dsgn to set
+     * @param emp_dsgn the emp_designation to set
      */
-    public void setEmp_dsgn(String emp_dsgn) {
-        this.emp_dsgn = emp_dsgn;
+    public void setEmp_designation(String emp_dsgn) {
+        this.emp_designation = emp_dsgn;
     }
 
     /**
@@ -96,31 +96,31 @@ public class EmpInfo implements Serializable {
     }
 
     /**
-     * @return the app_level1
+     * @return the approver_level_one
      */
-    public String getApp_level1() {
-        return app_level1;
+    public String getApprover_level_one() {
+        return approver_level_one;
     }
 
     /**
-     * @param app_level1 the app_level1 to set
+     * @param approver_level_one the approver_level_one to set
      */
-    public void setApp_level1(String app_level1) {
-        this.app_level1 = app_level1;
+    public void setApprover_level_one(String approver_level_one) {
+        this.approver_level_one = approver_level_one;
     }
 
     /**
-     * @return the app_level2
+     * @return the approver_level_two
      */
-    public String getApp_level2() {
-        return app_level2;
+    public String getApprover_level_two() {
+        return approver_level_two;
     }
 
     /**
-     * @param app_level2 the app_level2 to set
+     * @param approver_level_two the approver_level_two to set
      */
-    public void setApp_level2(String app_level2) {
-        this.app_level2 = app_level2;
+    public void setApprover_level_two(String approver_level_two) {
+        this.approver_level_two = approver_level_two;
     }
 
     @Override
@@ -136,10 +136,10 @@ public class EmpInfo implements Serializable {
     }
 
     /**
-     * @param emp_name the emp_name to set
+     * @param empName the emp_name to set
      */
-    public void setEmp_name(String emp_name) {
-        this.emp_name = emp_name;
+    public void setEmp_name(String empName) {
+        this.emp_name = empName;
     }
 
     /**
@@ -159,14 +159,14 @@ public class EmpInfo implements Serializable {
     /**
      * @return the emp_number
      */
-    public int getEmp_number() {
+    public String getEmp_number() {
         return emp_number;
     }
 
     /**
      * @param emp_number the emp_number to set
      */
-    public void setEmp_number(int emp_number) {
+    public void setEmp_number(String emp_number) {
         this.emp_number = emp_number;
     }
     

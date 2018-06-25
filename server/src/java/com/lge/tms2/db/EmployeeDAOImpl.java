@@ -135,18 +135,18 @@ public class EmployeeDAOImpl extends DataBase implements EmployeeDAO {
 
         PreparedStatement ps = null;
         try {
-            System.out.println("INSERT INTO `" + tableName + "` (`design` = " + info.getEmp_dsgn() + ", `domain` = " + info.getEmp_domain() + ", `email`=" + info.getEmp_email() + ", `emp_id`=" + info.getEmp_id() + ",  `grpname`=" + info.getEmp_group() + ", `empskil1`=" + info.getApp_level1() + ", `empskil2`=" + info.getApp_level2() + ")");
-            ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`emp_id`,`emp_name`,`emp_email`,`emp_image`,`emp_dsgn`,`emp_number`, `emp_group`,`emp_domain`, `app_level1`, `app_level2`) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?)");
+            System.out.println("INSERT INTO `" + tableName + "` (`design` = " + info.getEmp_designation() + ", `domain` = " + info.getEmp_domain() + ", `email`=" + info.getEmp_email() + ", `emp_id`=" + info.getEmp_id() + ",  `grpname`=" + info.getEmp_group() + ", `empskil1`=" + info.getApprover_level_one() + ", `empskil2`=" + info.getApprover_level_two() + ")");
+            ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`emp_id`,`emp_name`,`emp_email`,`emp_image`,`emp_designation`,`emp_number`, `emp_group`,`emp_domain`, `approver_level_one`, `approver_level_two`) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?)");
             ps.setString(1, info.getEmp_id());
             ps.setString(2, info.getEmp_name());
             ps.setString(3, info.getEmp_email());
             ps.setString(4, info.getEmp_image());
-            ps.setString(5, info.getEmp_dsgn());
-            ps.setInt(6, info.getEmp_number());
+            ps.setString(5, info.getEmp_designation());
+            ps.setString(6, info.getEmp_number());
             ps.setString(7, info.getEmp_group());
             ps.setString(8, info.getEmp_domain());
-            ps.setString(9, info.getApp_level1());
-            ps.setString(10, info.getApp_level2());
+            ps.setString(9, info.getApprover_level_one());
+            ps.setString(10, info.getApprover_level_two());
             
             status = ps.executeUpdate();
             if (status == 0) {
@@ -186,14 +186,14 @@ public class EmployeeDAOImpl extends DataBase implements EmployeeDAO {
 
         try {
 
-            ps = con.prepareStatement("UPDATE `" + tableName + "` SET `design` = ?, `domain`= ?, `email`= ?, `grpname`= ?, `empskil1`= ?, `empskil2` = ? WHERE `emp_id`= " + empID);
+            ps = con.prepareStatement("UPDATE `" + tableName + "` SET `emp_designation` = ?, `emp_domain`= ?, `emp_email`= ?, `emp_group`= ?, `approver_level_one`= ?, `approver_level_two` = ? WHERE `emp_id`= '" + empID + "'");
 
-            ps.setString(1, info.getEmp_dsgn());
+            ps.setString(1, info.getEmp_designation());
             ps.setString(2, info.getEmp_domain());
             ps.setString(3, info.getEmp_email());
             ps.setString(4, info.getEmp_group());
-            ps.setString(5, info.getApp_level1());
-            ps.setString(6, info.getApp_level2());
+            ps.setString(5, info.getApprover_level_one());
+            ps.setString(6, info.getApprover_level_two());
             status = ps.executeUpdate();
 
         } catch (SQLException e) {

@@ -15,16 +15,16 @@ import java.io.Serializable;
 public class SkillSet implements Serializable {  
     private static final long serialVersionUID = 1L; 
     private String emp_id;
-    private String psk_level1;
-    private String psk_level2;
-    private String psk_level3;
-    private String ssk_level1;
-    private String ssk_level2;
-    private String ssk_level3;
-    private String lng1;
-    private String lng1_level;
-    private String lng2;
-    private String lng2_level;
+    private String primary_skill_one;
+    private String primary_skill_two;
+    private String primary_skill_three;
+    private String secondary_skill_one;
+    private String secondary_skill_two;
+    private String secondary_skill_three;
+    private String language_one;
+    private String language_one_level;
+    private String language_two;
+    private String language_two_level;
     private String os;
     private String os_level;
 
@@ -43,143 +43,143 @@ public class SkillSet implements Serializable {
     }
 
     /**
-     * @return the psk_level1
+     * @return the primary_skill_one
      */
-    public String getPsk_level1() {
-        return psk_level1;
+    public String getPrimary_skill_one() {
+        return primary_skill_one;
     }
 
     /**
-     * @param psk_level1 the psk_level1 to set
+     * @param psk_level1 the primary_skill_one to set
      */
-    public void setPsk_level1(String psk_level1) {
-        this.psk_level1 = psk_level1;
+    public void setPrimary_skill_one(String psk_level1) {
+        this.primary_skill_one = psk_level1;
     }
 
     /**
-     * @return the psk_level2
+     * @return the primary_skill_two
      */
-    public String getPsk_level2() {
-        return psk_level2;
+    public String getPrimary_skill_two() {
+        return primary_skill_two;
     }
 
     /**
-     * @param psk_level2 the psk_level2 to set
+     * @param primary_skill_two the primary_skill_two to set
      */
-    public void setPsk_level2(String psk_level2) {
-        this.psk_level2 = psk_level2;
+    public void setPrimary_skill_two(String primary_skill_two) {
+        this.primary_skill_two = primary_skill_two;
     }
 
     /**
-     * @return the psk_level3
+     * @return the primary_skill_three
      */
-    public String getPsk_level3() {
-        return psk_level3;
+    public String getPrimary_skill_three() {
+        return primary_skill_three;
     }
 
     /**
-     * @param psk_level3 the psk_level3 to set
+     * @param primary_skill_three the primary_skill_three to set
      */
-    public void setPsk_level3(String psk_level3) {
-        this.psk_level3 = psk_level3;
+    public void setPrimary_skill_three(String primary_skill_three) {
+        this.primary_skill_three = primary_skill_three;
     }
 
     /**
-     * @return the ssk_level1
+     * @return the secondary_skill_one
      */
-    public String getSsk_level1() {
-        return ssk_level1;
+    public String getSecondary_skill_one() {
+        return secondary_skill_one;
     }
 
     /**
-     * @param ssk_level1 the ssk_level1 to set
+     * @param secondary_skill_one the secondary_skill_one to set
      */
-    public void setSsk_level1(String ssk_level1) {
-        this.ssk_level1 = ssk_level1;
+    public void setSecondary_skill_one(String secondary_skill_one) {
+        this.secondary_skill_one = secondary_skill_one;
     }
 
     /**
-     * @return the ssk_level2
+     * @return the secondary_skill_two
      */
-    public String getSsk_level2() {
-        return ssk_level2;
+    public String getSecondary_skill_two() {
+        return secondary_skill_two;
     }
 
     /**
-     * @param ssk_level2 the ssk_level2 to set
+     * @param secondary_skill_two the secondary_skill_two to set
      */
-    public void setSsk_level2(String ssk_level2) {
-        this.ssk_level2 = ssk_level2;
+    public void setSecondary_skill_two(String secondary_skill_two) {
+        this.secondary_skill_two = secondary_skill_two;
     }
 
     /**
-     * @return the ssk_level3
+     * @return the secondary_skill_three
      */
-    public String getSsk_level3() {
-        return ssk_level3;
+    public String getSecondary_skill_three() {
+        return secondary_skill_three;
     }
 
     /**
-     * @param ssk_level3 the ssk_level3 to set
+     * @param secondary_skill_three the secondary_skill_three to set
      */
-    public void setSsk_level3(String ssk_level3) {
-        this.ssk_level3 = ssk_level3;
+    public void setSecondary_skill_three(String secondary_skill_three) {
+        this.secondary_skill_three = secondary_skill_three;
     }
 
     /**
-     * @return the lng1
+     * @return the language_one
      */
-    public String getLng1() {
-        return lng1;
+    public String getLanguage_one() {
+        return language_one;
     }
 
     /**
-     * @param lng1 the lng1 to set
+     * @param language_one the language_one to set
      */
-    public void setLng1(String lng1) {
-        this.lng1 = lng1;
+    public void setLanguage_one(String language_one) {
+        this.language_one = language_one;
     }
 
     /**
-     * @return the lng1_level
+     * @return the language_one_level
      */
-    public String getLng1_level() {
-        return lng1_level;
+    public String getLanguage_one_level() {
+        return language_one_level;
     }
 
     /**
-     * @param lng1_level the lng1_level to set
+     * @param language_one_level the language_one_level to set
      */
-    public void setLng1_level(String lng1_level) {
-        this.lng1_level = lng1_level;
+    public void setLanguage_one_level(String language_one_level) {
+        this.language_one_level = language_one_level;
     }
 
     /**
-     * @return the lng2
+     * @return the language_two
      */
-    public String getLng2() {
-        return lng2;
+    public String getLanguage_two() {
+        return language_two;
     }
 
     /**
-     * @param lng2 the lng2 to set
+     * @param language_two the language_two to set
      */
-    public void setLng2(String lng2) {
-        this.lng2 = lng2;
+    public void setLanguage_two(String language_two) {
+        this.language_two = language_two;
     }
 
     /**
-     * @return the lng2_level
+     * @return the language_two_level
      */
-    public String getLng2_level() {
-        return lng2_level;
+    public String getLanguage_two_level() {
+        return language_two_level;
     }
 
     /**
-     * @param lng2_level the lng2_level to set
+     * @param language_two_level the language_two_level to set
      */
-    public void setLng2_level(String lng2_level) {
-        this.lng2_level = lng2_level;
+    public void setLanguage_two_level(String language_two_level) {
+        this.language_two_level = language_two_level;
     }
 
     /**

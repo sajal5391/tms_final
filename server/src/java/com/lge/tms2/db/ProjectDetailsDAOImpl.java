@@ -127,7 +127,7 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
 
         PreparedStatement ps = null;
         try {            
-            ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`emp_id`,`project_name`,`project_code`,`project_type`,`project_cty`,`mc_cty`,`start_date`,`end_date`,`project_region`,`project_country`,`project_suffix`) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?)");
+            ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`emp_id`,`project_name`,`project_code`,`project_type`,`project_category`,`mc_category`,`start_date`,`end_date`,`project_region`,`project_country`,`project_suffix`) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?)");
             ps.setString(1, pd.getEmp_id());
             ps.setString(2, pd.getProject_name());
             ps.setString(3, pd.getProject_code());
@@ -177,7 +177,7 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
 
         try {
 
-            ps = con.prepareStatement("UPDATE `" + tableName + "` SET `project_name`=?,`project_code`=?,`project_type`=?,`project_cty`=?,`mc_cty`=?,`start_date`=?,`end_date`=?,`project_region`=?,`project_country`=?,`project_suffix`=? WHERE `emp_id`= ?");
+            ps = con.prepareStatement("UPDATE `" + tableName + "` SET `project_name`=?,`project_code`=?,`project_type`=?,`project_category`=?,`mc_category`=?,`start_date`=?,`end_date`=?,`project_region`=?,`project_country`=?,`project_suffix`=? WHERE `emp_id`= ?");
 
             ps.setString(1, pd.getProject_name());
             ps.setString(2, pd.getProject_code());
