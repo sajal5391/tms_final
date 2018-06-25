@@ -76,7 +76,7 @@ public class EmployeeDAOImpl extends DataBase implements EmployeeDAO {
     }
      
     public EmpInfo getEmpInfo(EmpInfo info) {
-        return getEmpInfo(info , "emp_id = '" + info.getEmp_id() + "' OR emp_email = '" + info.getEmp_email() + "'");
+        return getEmpInfo(info , "emp_id like '%" + info.getEmp_id() + "%' OR emp_email = '" + info.getEmp_email() + "'");
     }
     
     public EmpInfo getEmpInfo(EmpInfo info , String query) {

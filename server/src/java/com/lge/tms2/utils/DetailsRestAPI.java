@@ -80,13 +80,13 @@ public class DetailsRestAPI {
                     }.getType();
                     return g.toJson(list, listType);
                 } else {
-                    message = Util.toJson("Success", "List is Empty");
+                    message = Util.toJson("false", "List is Empty");
                 }
             } else {
-                message = Util.toJson("Success", "Something wrong with in DB Connection/Exception");
+                message = Util.toJson("false", "Something wrong with in DB Connection/Exception");
             }
         } catch (Exception e) {
-            message = Util.toJson("Failure", e.getMessage());
+            message = Util.toJson("false", e.getMessage());
         }
         return message;
     }
@@ -103,15 +103,26 @@ public class DetailsRestAPI {
             Login log = g.fromJson(empDetails, Login.class);
             System.out.println(log);
             if (log != null) {
-                boolean result = ExecutePythonFromJava.isLogin(log.getUsername(), log.getPassword());
+                //Read DB and extract EmpInfo
+                EmpInfo info = new EmpInfo();
+                info.setEmp_id(log.getUsername());
+                info.setEmp_email(log.getUsername());
+                EmployeeDAOImpl empDAO = new EmployeeDAOImpl();
+                boolean result = false;
+                if(log.getUsername() != null && log.getUsername().length() <= 8) {
+                  empDAO.getEmpInfo(info);
+                  log.setUsername(info.getEmp_email());
+                } 
+                result = ExecutePythonFromJava.isLogin(log.getUsername(), log.getPassword());
+                
                 System.out.println("Login: " + result);
                 if (result) {
-                    List<JoinEmpSkills> list = new EmployeeDAOImpl().getLeftJoin("emp_details.emp_email like '%" + log.getUsername() + "%'");
+                    List<JoinEmpSkills> list = empDAO.getLeftJoin("emp_details.emp_email like '%" + log.getUsername() + "%'");
                     if (list != null) {
                         if (!list.isEmpty()) {
                             message = Util.toJson("true",g.toJson(list.get(0), JoinEmpSkills.class),null);
                         } else {
-                            message = Util.toJson("true", "No Data");
+                            message = Util.toJson("false", "No Data");
                         }
                     } else {
                         message = Util.toJson("false", "Something wrong with in DB Connection/Exception");

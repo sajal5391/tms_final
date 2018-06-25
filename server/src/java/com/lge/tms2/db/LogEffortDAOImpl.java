@@ -7,6 +7,7 @@
 package com.lge.tms2.db;
 
 import com.lge.tms2.utils.Util;
+import com.lge.tms2.wrapper.CalendarDate;
 import com.lge.tms2.wrapper.LogEffort;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,6 +62,38 @@ public class LogEffortDAOImpl extends DataBase implements LogEffortDAO{
            
         }
         return list;
+    }
+    
+    
+    public CalendarDate getAllCalEffort(String query) {
+        Connection con = null;
+        CalendarDate calDate = new CalendarDate();
+        Util.Log("getAllCalEffort -> : query" + query);
+        con = GetCon.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet result = null;
+        try {
+            if (query == null || query.isEmpty()) {
+                ps = con.prepareStatement("Select * from `" + tableName + "`");
+                Util.Log("Select * from `" + tableName + "`");
+            } else {
+                ps = con.prepareStatement("Select * from `" + tableName + "` WHERE " + query);
+                Util.Log("Select * from `" + tableName + "` WHERE " + query);
+            }
+            result = ps.executeQuery();
+            while (result.next()) {
+                calDate.addStatusValue(result.getInt("filled_state"), result.getString("iris_date"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            calDate = null;
+        } finally {
+                closeAll(result, ps);
+           
+        }
+        return calDate;
     }
 
     @Override

@@ -39,12 +39,10 @@ public class LogoutAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         HttpSession ses = request.getSession(true);
-        String admin = request.getParameter("admin");
-        
-        EmpInfo login = (EmpInfo) (ses.getAttribute("empInfo"));
+        EmpInfo login = (EmpInfo) (ses.getAttribute("admin"));
         if (login != null) {
-            ses.setAttribute("empInfo", null);
-            ses.removeAttribute("empInfo");
+            ses.setAttribute("admin", null);
+            ses.removeAttribute("admin");
             ses.invalidate();
         }
         

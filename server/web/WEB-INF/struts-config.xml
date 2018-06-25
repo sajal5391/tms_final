@@ -21,13 +21,13 @@
 
     <action-mappings>
         <action input="/" name="LoginForm" path="/login" scope="sessions" validate="true"  type="com.lge.tms2.action.LoginAction">
-            <forward name="success" path="/home.jsp" />
-            <forward name="failure" path="/login.jsp"/>
+            <forward name="success" path="/admin/home.jsp" />
+            <forward name="failure" path="/admin/login.jsp"/>
         </action>
         <action path="/logout" type="com.lge.tms2.action.LogoutAction" scope="sessions">
-            <forward name="success" path="/home.jsp" />
+            <forward name="success" path="/admin/login.jsp" />
         </action>
-        <action path="/Home" forward="/home.jsp"/>
+        <action path="/Home" forward="/admin/home.jsp"/>
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

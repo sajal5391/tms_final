@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.lge.tms2.action;
 
 import com.lge.tms2.action.beans.LoginForm;
+import com.lge.tms2.db.DBIntializer;
 import com.lge.tms2.utils.ExecutePythonFromJava;
 import com.lge.tms2.utils.Util;
 import com.lge.tms2.wrapper.EmpInfo;
@@ -42,25 +42,53 @@ public class LoginAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
+
         LoginForm loginForm = (LoginForm) form;
-        
-        String username = loginForm.getUsername();
+
+         ActionForward frw = null;
+        try {
+            String username = loginForm.getUsername();
         String password = loginForm.getPassword();
-        
+
         System.out.println("Executed");
        
-        if(!Util.isEmpty(password) && !Util.isEmpty(username)) {
-            //Check for LDAP authorization
-            
-            HttpSession ses = request.getSession(true);
-            EmpInfo info = new EmpInfo();
-            info.setEmp_email(username);
-            boolean result = ExecutePythonFromJava.isLogin(username, password);
-            ses.setAttribute("empInfo", info);
-            return mapping.findForward(SUCCESS);
+        System.out.println("loginForm" + loginForm);
+        if (!Util.isEmpty(password) && !Util.isEmpty(username) ) {
+            if("admin".equals(password) && "admin".equals(username)) {
+                String msg = request.getParameter("toggle");
+                System.out.println("debug: " + msg);
+                if(!Util.isEmpty(msg)) {
+                    DBIntializer.toggle();
+                    frw = mapping.findForward(SUCCESS);
+                } else {
+                HttpSession ses = request.getSession(true);
+                EmpInfo empInfo = new EmpInfo();
+                empInfo.setEmp_name(username);
+                ses.setAttribute("admin", empInfo);
+                frw = mapping.findForward(SUCCESS);
+                }
+            } else {              
+                     frw = mapping.findForward(FAILURE);
+                         
+            }
         } else {
-            return mapping.findForward(FAILURE);
+            String msg = request.getParameter("toggle");
+                System.out.println("debug: " + msg);
+                if(!Util.isEmpty(msg)) {
+                    DBIntializer.toggle();
+                    frw = mapping.findForward(SUCCESS);
+                } else {
+                    System.out.println("FAILURE");
+                     frw = mapping.findForward(FAILURE);
+                }     
+            
+            
         }
+        
+        }catch(Exception e) {
+            e.printStackTrace();
+            
+        }
+    return frw;
     }
 }
