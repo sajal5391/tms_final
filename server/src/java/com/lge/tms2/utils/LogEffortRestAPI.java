@@ -8,6 +8,7 @@ package com.lge.tms2.utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lge.tms2.db.LogEffortDAOImpl;
+import com.lge.tms2.wrapper.CalendarDate;
 import com.lge.tms2.wrapper.LogEffort;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -77,15 +78,35 @@ public class LogEffortRestAPI {
                     Gson g = new Gson();
                     Type listType = new TypeToken<List<LogEffort>>() {
                     }.getType();
-                    return g.toJson(list, listType);
+                    message = Util.toJson("true", g.toJson(list, listType), null);
                 } else {
-                    message = Util.toJson("Success", "List is Empty");
+                    message = Util.toJson("false", "List is Empty");
                 }
             } else {
-                message = Util.toJson("Success", "Something wrong with DB Connection");
+                message = Util.toJson("false", "Something wrong with DB Connection");
             }
         } catch (Exception e) {
-            message = Util.toJson("Failure", e.getMessage());
+            message = Util.toJson("false", e.getMessage());
+        }
+        return message;
+    }
+    
+    
+    @Path("/cal/{empid}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getCalEffort(@PathParam("empid") int empid) {
+        String message = "";
+        try {
+            CalendarDate calDate = new LogEffortDAOImpl().getAllCalEffort("emp_id like '%"+empid+"%'");
+            if (calDate != null) {                
+                    Gson g = new Gson();                    
+                    message = Util.toJson("true", g.toJson(calDate, CalendarDate.class), null);                
+            } else {
+                message = Util.toJson("false", "Something wrong with DB Connection");
+            }
+        } catch (Exception e) {
+            message = Util.toJson("false", e.getMessage());
         }
         return message;
     }
