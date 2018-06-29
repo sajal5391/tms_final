@@ -33,6 +33,10 @@ import {
     MatTooltipModule,
     MatSnackBarModule,
 } from '@angular/material';
+import { DashService } from './dash.service';
+import { LogeffortService } from '../logeffort/logeffort.service';
+import { ChartsModule } from 'ng2-charts';
+//import { DashResolve } from './dash.resolve.service';
 
 @NgModule({
     imports: [
@@ -63,11 +67,16 @@ import {
         MatGridListModule,
         MatSnackBarModule,
         MatTooltipModule,
+        ChartsModule
     ],
     declarations: [
         LogeffortComponent,
         ApprovalComponent,
     ],
-    providers: []
+    providers: [
+        DashService,
+        LogeffortService,
+        //DashResolve,
+    ]
 })
 export class DashModule { }
