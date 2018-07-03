@@ -35,7 +35,6 @@ import { LoginComponent } from './login/login.component';
 import { DashComponent } from './dash/dash.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
-import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 // import { LogeffortComponent } from './logeffort/logeffort.component';
 // import { ApprovalComponent } from './approval/approval.component';
 import { LoaderComponent } from './loader/loader.component';
@@ -46,6 +45,7 @@ import { CalendarService } from './calendar/calendar.service';
 import { DashResolve, ProjectResolve } from './dash/dash.resolve.service';
 import { DashService } from './dash/dash.service';
 import { SharedService } from './shared/shared.service';
+import { NotfoundComponent } from './notfound/notfound.component';
 // import { LogeffortService } from './logeffort/logeffort.service';
 
 
@@ -56,8 +56,8 @@ import { SharedService } from './shared/shared.service';
         DashComponent,
         CalendarComponent,
         EmployeeProfileComponent,
-        EmployeeDetailsComponent,
         LoaderComponent,
+        NotfoundComponent,
         // LogeffortComponent,
         // ApprovalComponent,
     ],
@@ -104,8 +104,7 @@ import { SharedService } from './shared/shared.service';
     ],
     bootstrap: [AppComponent],
     entryComponents: [
-        EmployeeProfileComponent,
-        
+        EmployeeProfileComponent
     ]
 })
 export class AppModule { }
