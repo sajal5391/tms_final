@@ -212,11 +212,11 @@ public class EmployeeDAOImpl extends DataBase implements EmployeeDAO {
 
     @Override
     public int updateEmpInfo(String key, String value, String empId) {
-       return updateTableKeyValue(key, value, empId);
+       return updateTableKeyValue(key, value, "`emp_id`= " + empId);
     }
 
     @Override
-    public boolean deleteEmpInfo(String empId) {        
+    public boolean deleteEmpInfo(String empId) {
         return deleteTableByEmpId(empId);
     }
 

@@ -8,10 +8,8 @@ package com.lge.tms2.utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lge.tms2.db.ProjectDetailsDAOImpl;
-import com.lge.tms2.db.TaskDAOImpl;
 import com.lge.tms2.wrapper.ProjectDetails;
-import com.lge.tms2.wrapper.ProjectJson;
-import com.lge.tms2.wrapper.Tasks;
+import com.lge.tms2.wrapper.json.ProjectJson;
 import java.lang.reflect.Type;
 import java.util.List;
 import javax.ws.rs.*;
@@ -33,13 +31,32 @@ public class ProjectDetailsRestAPI {
         return "Available RestAPI are:\n"
                 + "GET -> all -> List all Employee Projects\n"
                 + "GET -> /{empid} -> List all projects of an Employee\n"
-                + "POST -> addprojectslist -> Add Multiple Employee information into table\n"
+                + "POST -> add -> Add Multiple Employee information into table\n"
                 + "POST -> projects -> Show an Employee Information based on empID\n"
                 + "POST -> addprojects -> Add Employee information into table\n"
                 + "POST -> delprojects -> Delete Employee information from table\n"
                 + "POST -> updateprojects-> Update Employee information from table\n"
                 ;
                 
+    }
+    
+    
+    @Path("list")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getProjectJson() {
+        String message = "";
+        try {
+            ProjectJson proJson = new ProjectDetailsDAOImpl().getProjectJson();
+            if (proJson != null) {Gson g = new Gson();                   
+                message = Util.toJson("true", proJson, null);                
+            } else {
+                message = Util.toJson("false", "Something wrong with DB Connection");
+            }
+        } catch (Exception e) {
+            message = Util.toJson("false", e.getMessage());
+        }
+        return message;
     }
     
     
@@ -68,32 +85,7 @@ public class ProjectDetailsRestAPI {
         return message;
     }
     
-
-    @Path("/{empid}")
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getEmpProjectDetails(@PathParam("empid") int empid) {
-        String message = "";
-        ProjectJson proJson = new ProjectJson();
-        try {
-            proJson.setProjects(new ProjectDetailsDAOImpl().getAllProjectDetails("emp_id like '%"+ empid+"%'"));
-            proJson.setProjectTasks(new TaskDAOImpl().getAllTasks());//"emp_id like '%"+ empid+"%'")
-            if (proJson.getProjectTasks() != null &&  proJson.getProjects() != null) {                
-                Gson g = new Gson();
-               /* Type listType = new TypeToken<List<ProjectJson>>() {
-                }.getType();*/
-                return g.toJson(proJson, ProjectJson.class);                
-            } else {
-                message = Util.toJson("Success", "Something wrong with DB Connection");
-            }
-        } catch (Exception e) {
-            message = Util.toJson("Failure", e.getMessage());
-        }
-        return message;
-    }
-    
-    
-    @Path("addprojectslist")
+    @Path("add")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public String addAllProjectDetails(String input) {
@@ -153,7 +145,7 @@ public class ProjectDetailsRestAPI {
             ProjectDetails info = null;
             try {
                 info = Util.getProjectDetails(input);
-                if (info != null && !info.getEmp_id().isEmpty()) {
+                if (info != null && !info.getSl_no().isEmpty()) {
                     int status = new ProjectDetailsDAOImpl().insertProjectDetails(info);
                     System.out.println("status: " +status);
                     if (status > 0) {
@@ -185,11 +177,11 @@ public class ProjectDetailsRestAPI {
             try {
                 info = Util.getProjectDetails(input);
                 if (info != null) {
-                    boolean status = new ProjectDetailsDAOImpl().deleteProjectDetails(info.getEmp_id());
+                    boolean status = new ProjectDetailsDAOImpl().deleteProjectDetails(info.getSl_no());
                     if(status) {
-                        message = Util.toJson("Success", "Employee Info deleted emp_id:" + info.getEmp_id());
+                        message = Util.toJson("Success", "Employee Info deleted emp_id:" + info.getSl_no());
                     } else {
-                        message = Util.toJson("Failure", "Failed to delete emp_id:" + info.getEmp_id());
+                        message = Util.toJson("Failure", "Failed to delete emp_id:" + info.getSl_no());
                     }
                     
                 } else {
@@ -215,9 +207,9 @@ public class ProjectDetailsRestAPI {
                 if (info != null) {
                     int status = new ProjectDetailsDAOImpl().updateProjectDetails(info);
                     if(status > 0) {
-                        message = Util.toJson("Success", "Employee Info Updated emp_id:" + info.getEmp_id());
+                        message = Util.toJson("Success", "Employee Info Updated emp_id:" + info.getSl_no());
                     } else {
-                        message = Util.toJson("Failure", "Failed to update emp_id:" + info.getEmp_id());
+                        message = Util.toJson("Failure", "Failed to update emp_id:" + info.getSl_no());
                     }
                     
                 } else {

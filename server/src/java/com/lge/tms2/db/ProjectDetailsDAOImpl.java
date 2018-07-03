@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.lge.tms2.db;
 
 import com.lge.tms2.utils.Util;
 import com.lge.tms2.wrapper.ProjectDetails;
+import com.lge.tms2.wrapper.json.ProjectJson;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,17 +19,17 @@ import java.util.List;
  *
  * @author ramesh.nagarajan
  */
-public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO{
+public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO {
 
     public ProjectDetailsDAOImpl() {
-         tableName = TABLE_PROJECT_DETAILS;
-    }    
-    
+        tableName = TABLE_PROJECT_DETAILS;
+    }
+
     @Override
     public List<ProjectDetails> getAllProjectDetails() {
         return getAllProjectDetails("");
     }
-    
+
     public List<ProjectDetails> getAllProjectDetails(String query) {
         Connection con = null;
         ArrayList<ProjectDetails> list = new ArrayList<ProjectDetails>();
@@ -46,8 +46,8 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
                 ps = con.prepareStatement("Select * from `" + tableName + "` WHERE " + query);
                 Util.Log("Select * from `" + tableName + "` WHERE " + query);
             }
-            result = ps.executeQuery();           
-            while (result.next()) {                
+            result = ps.executeQuery();
+            while (result.next()) {
                 ProjectDetails pd = new ProjectDetails();
                 readFromResultSet(pd, result);
                 list.add(pd);
@@ -56,27 +56,65 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
         } catch (SQLException e) {
             e.printStackTrace();
             list = null;
-        } finally {            
-                closeAll(result, ps);
-           
+        } finally {
+            closeAll(result, ps);
+
         }
         return list;
     }
 
+    public ProjectJson getProjectJson() {
+        Connection con = GetCon.getConnection();
+        ProjectJson proJson = new ProjectJson();
+        PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
+        ResultSet result = null;
+        try {
+            ps = con.prepareStatement("Select * from `" + tableName + "`");
+            ps1 = con.prepareStatement("Select * from `" + TaskDAO.TABLE_TASK_TABLE + "`");
+            Util.Log("Select * from `" + tableName + "`");
+            Util.Log("Select * from `" + TaskDAO.TABLE_TASK_TABLE + "`");
+
+            result = ps.executeQuery();
+            while (result.next()) {
+                proJson.addProjects(result.getString("project_name"));
+            }
+            //Read Project Task and Common Task
+            result = ps1.executeQuery();
+            while (result.next()) {
+                proJson.addProjectTasks(result.getString("project_task"));
+                proJson.addCommonTasks(result.getString("common_task"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            proJson = null;
+        } finally {
+            closeAll(result, ps);
+            try {
+                if (ps1 != null) {
+                    ps1.close();
+
+                }
+            } catch (SQLException ex) {
+            }
+
+        }
+        return proJson;
+    }
+
     @Override
     public ProjectDetails getProjectDetails(ProjectDetails pd) {
-       return getProjectDetails(pd , "emp_id = '" + pd.getEmp_id() + "'");
+        return getProjectDetails(pd, "emp_id = '" + pd.getSl_no() + "'");
     }
-    
-    
 
     @Override
     public ProjectDetails getProjectDetails(String query) {
-          return getProjectDetails(new ProjectDetails(), query);
+        return getProjectDetails(new ProjectDetails(), query);
     }
-     
-    public ProjectDetails getProjectDetails(ProjectDetails pd,String query) {
-        Connection con = null;        
+
+    public ProjectDetails getProjectDetails(ProjectDetails pd, String query) {
+        Connection con = null;
         Util.Log("getSkillSet -> : query" + query);
         con = GetCon.getConnection();
 
@@ -116,7 +154,7 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
     @Override
     public int insertProjectDetails(ProjectDetails pd) {
         int status = -1;
-        if (pd == null || Util.isEmpty(pd.getEmp_id())) {
+        if (pd == null || Util.isEmpty(pd.getSl_no())) {
             return status;
         }
         Connection con = GetCon.getConnection();
@@ -126,19 +164,19 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
         }
 
         PreparedStatement ps = null;
-        try {            
-            ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`emp_id`,`project_name`,`project_code`,`project_type`,`project_category`,`mc_category`,`start_date`,`end_date`,`project_region`,`project_country`,`project_suffix`) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?)");
-            ps.setString(1, pd.getEmp_id());
-            ps.setString(2, pd.getProject_name());
-            ps.setString(3, pd.getProject_code());
-            ps.setString(4, pd.getProject_type());
-            ps.setString(5, pd.getProject_cty());
-            ps.setString(6, pd.getMc_cty());
-            ps.setString(7, pd.getStart_date());
-            ps.setString(8, pd.getEnd_date());
-            ps.setString(9, pd.getProject_region());
-            ps.setString(10, pd.getProject_country());
-            ps.setString(11, pd.getProject_suffix());
+        try {
+            ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`project_name`,`project_code`,`project_type`,`project_category`,`mc_category`,`start_date`,`end_date`,`project_region`,`project_country`,`project_suffix`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+            ps.setString(1, pd.getProject_name());
+            ps.setString(2, pd.getProject_code());
+            ps.setString(3, pd.getProject_type());
+            ps.setString(4, pd.getProject_category());
+            ps.setString(5, pd.getMc_category());
+            ps.setString(6, pd.getStart_date());
+            ps.setString(7, pd.getEnd_date());
+            /*  ps.setString(9, pd.getProject_region());
+             ps.setString(10, pd.getProject_country());
+             ps.setString(11, pd.getProject_suffix());*/
             status = ps.executeUpdate();
             if (status == 0) {
                 status = -1;
@@ -164,8 +202,6 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
             return -1;
         }
 
-        
-
         Connection con = GetCon.getConnection();
 
         if (con == null) {
@@ -177,19 +213,19 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
 
         try {
 
-            ps = con.prepareStatement("UPDATE `" + tableName + "` SET `project_name`=?,`project_code`=?,`project_type`=?,`project_category`=?,`mc_category`=?,`start_date`=?,`end_date`=?,`project_region`=?,`project_country`=?,`project_suffix`=? WHERE `emp_id`= ?");
+            ps = con.prepareStatement("UPDATE `" + tableName + "` SET `project_name`=?,`project_code`=?,`project_type`=?,`project_category`=?,`mc_category`=?,`start_date`=?,`end_date`=? WHERE `sl_no`= ?");
 
             ps.setString(1, pd.getProject_name());
             ps.setString(2, pd.getProject_code());
             ps.setString(3, pd.getProject_type());
-            ps.setString(4, pd.getProject_cty());
-            ps.setString(5, pd.getMc_cty());
+            ps.setString(4, pd.getProject_category());
+            ps.setString(5, pd.getMc_category());
             ps.setString(6, pd.getStart_date());
             ps.setString(7, pd.getEnd_date());
-            ps.setString(8, pd.getProject_region());
-            ps.setString(9, pd.getProject_country());
-            ps.setString(10, pd.getProject_suffix());
-            ps.setString(11, pd.getEmp_id());
+            /*  ps.setString(8, pd.getProject_region());
+             ps.setString(9, pd.getProject_country());
+             ps.setString(10, pd.getProject_suffix());*/
+            ps.setString(8, pd.getSl_no());
             status = ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -208,12 +244,12 @@ public class ProjectDetailsDAOImpl extends DataBase implements ProjectDetailsDAO
 
     @Override
     public int updateProjectDetails(String key, String value, String employeeId) {
-        return updateTableKeyValue(key, value, employeeId);
+        return updateTableKeyValue(key, value,  "`emp_id`= " +employeeId);
     }
 
     @Override
     public boolean deleteProjectDetails(String employeeId) {
         return deleteTableByEmpId(employeeId);
     }
-    
+
 }

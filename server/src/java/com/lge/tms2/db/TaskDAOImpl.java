@@ -69,7 +69,7 @@ public class TaskDAOImpl extends DataBase implements TaskDAO{
 
     @Override
     public Tasks getTasks(Tasks log) {
-       return getTasks(log, " `project_type` = '" + log.getProject_type() + "'");
+       return getTasks(log, " `project_type` = '" + log.getProject_task() + "'");
     }
     
     public Tasks getTasks(Tasks task , String query) {
@@ -114,7 +114,7 @@ public class TaskDAOImpl extends DataBase implements TaskDAO{
     @Override
     public int insertTasks(Tasks task) {
          int status = -1;
-        if (task == null || Util.isEmpty(task.getProject_type())) {
+        if (task == null || Util.isEmpty(task.getProject_task())) {
             return status;
         }
         Connection con = GetCon.getConnection();
@@ -126,8 +126,8 @@ public class TaskDAOImpl extends DataBase implements TaskDAO{
         PreparedStatement ps = null;
         try {            
             ps = con.prepareStatement("INSERT INTO `" + tableName + "` (`project_type`,`tasks`) VALUES (?, ?)");
-            ps.setString(1, task.getProject_type());
-            ps.setString(2, task.getTasks());
+            ps.setString(1, task.getProject_task());
+            ps.setString(2, task.getCommon_task());
             
             status = ps.executeUpdate();
             if (status == 0) {
@@ -168,8 +168,8 @@ public class TaskDAOImpl extends DataBase implements TaskDAO{
         try {
 
             ps = con.prepareStatement("UPDATE `" + tableName + "` SET `tasks` = ? WHERE `project_type`= ?");
-            ps.setString(1, task.getTasks());           
-            ps.setString(2, task.getProject_type());
+            ps.setString(1, task.getCommon_task());           
+            ps.setString(2, task.getProject_task());
             status = ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -188,7 +188,7 @@ public class TaskDAOImpl extends DataBase implements TaskDAO{
 
     @Override
     public int updateTasks(String key, String value, String employeeId) {
-        return updateTableKeyValue(key, value, employeeId);
+        return updateTableKeyValue(key, value,  "`emp_id`= " +employeeId);
     }
 
     @Override

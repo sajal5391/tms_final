@@ -36,7 +36,7 @@ public abstract class DBIntializer {
         IP = debug_db ? "localhost" :"si-truptipd3";
         URL = "jdbc:mysql://"+IP+":" + PORT + "/";
         USERNAME = debug_db ? "root" :"testtms";
-        PASSWORD = debug_db ?  "root123": "admin";
+        PASSWORD = debug_db ?  "LGsoft@123": "admin";
     }
     
     public static boolean getDebug() {

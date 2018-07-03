@@ -14,37 +14,37 @@ import java.io.Serializable;
  */
 public class ProjectDetails implements Serializable {  
     private static final long serialVersionUID = 1L; 
-    private String emp_id;
+    private String sl_no;
     private String project_name;
     private String project_code;
     private String project_type;
-    private String project_cty;
-    private String mc_cty;
+    private String project_category;
+    private String mc_category;
     private String start_date;   
     private String end_date;
-    private String project_region;
+   /* private String project_region;
     private String project_country;
-    private String project_suffix;  
+    private String project_suffix;  */
 
     @Override
     public String toString() {
-        return "emp_id: " + emp_id+ ",project_name: " +project_name; //To change body of generated methods, choose Tools | Templates.
+        return "emp_id: " + sl_no+ ",project_name: " +project_name; //To change body of generated methods, choose Tools | Templates.
     }
 
     
     
     /**
-     * @return the emp_id
+     * @return the sl_no
      */
-    public String getEmp_id() {
-        return emp_id;
+    public String getSl_no() {
+        return sl_no;
     }
 
     /**
-     * @param emp_id the emp_id to set
+     * @param sl_no the sl_no to set
      */
-    public void setEmp_id(String emp_id) {
-        this.emp_id = emp_id;
+    public void setSl_no(String sl_no) {
+        this.sl_no = sl_no;
     }
 
     /**
@@ -90,31 +90,31 @@ public class ProjectDetails implements Serializable {
     }
 
     /**
-     * @return the project_cty
+     * @return the project_category
      */
-    public String getProject_cty() {
-        return project_cty;
+    public String getProject_category() {
+        return project_category;
     }
 
     /**
-     * @param project_cty the project_cty to set
+     * @param project_category the project_category to set
      */
-    public void setProject_cty(String project_cty) {
-        this.project_cty = project_cty;
+    public void setProject_category(String project_category) {
+        this.project_category = project_category;
     }
 
     /**
-     * @return the mc_cty
+     * @return the mc_category
      */
-    public String getMc_cty() {
-        return mc_cty;
+    public String getMc_category() {
+        return mc_category;
     }
 
     /**
-     * @param mc_cty the mc_cty to set
+     * @param mc_category the mc_category to set
      */
-    public void setMc_cty(String mc_cty) {
-        this.mc_cty = mc_cty;
+    public void setMc_category(String mc_category) {
+        this.mc_category = mc_category;
     }
 
     /**
@@ -145,46 +145,34 @@ public class ProjectDetails implements Serializable {
         this.end_date = end_date;
     }
 
-    /**
-     * @return the project_region
-     */
+   /*
     public String getProject_region() {
         return project_region;
     }
 
-    /**
-     * @param project_region the project_region to set
-     */
+   
     public void setProject_region(String project_region) {
         this.project_region = project_region;
     }
 
-    /**
-     * @return the project_country
-     */
+    
     public String getProject_country() {
         return project_country;
     }
 
-    /**
-     * @param project_country the project_country to set
-     */
+    
     public void setProject_country(String project_country) {
         this.project_country = project_country;
     }
 
-    /**
-     * @return the project_suffix
-     */
+    
     public String getProject_suffix() {
         return project_suffix;
     }
 
-    /**
-     * @param project_suffix the project_suffix to set
-     */
+   
     public void setProject_suffix(String project_suffix) {
         this.project_suffix = project_suffix;
     }
-    
+    */
 }

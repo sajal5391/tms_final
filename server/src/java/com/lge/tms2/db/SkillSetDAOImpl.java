@@ -212,7 +212,7 @@ public class SkillSetDAOImpl extends DataBase implements SkillSetDAO{
 
     @Override
     public int updateSkillSet(String key, String value, String employeeId) {
-       return updateTableKeyValue(key, value, employeeId);
+       return updateTableKeyValue(key, value,  "`emp_id`= " +employeeId);
     }
 
     @Override

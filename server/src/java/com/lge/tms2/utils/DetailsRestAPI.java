@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lge.tms2.db.EmployeeDAOImpl;
 import com.lge.tms2.db.SkillSetDAOImpl;
 import com.lge.tms2.wrapper.EmpInfo;
-import com.lge.tms2.wrapper.JoinEmpSkills;
+import com.lge.tms2.wrapper.json.JoinEmpSkills;
 import com.lge.tms2.wrapper.Login;
 import com.lge.tms2.wrapper.SkillSet;
 import java.lang.reflect.Type;
@@ -120,6 +120,13 @@ public class DetailsRestAPI {
                     List<JoinEmpSkills> list = empDAO.getLeftJoin("emp_details.emp_email like '%" + log.getUsername() + "%'");
                     if (list != null) {
                         if (!list.isEmpty()) {
+                            try {
+                             if(empDAO.getAllEmpInfo("approver_level_one like '%"+list.get(0).getEmpinfo().getEmp_email()+"%' OR approver_level_two like '%"+list.get(0).getEmpinfo().getEmp_email()+"%'").size() > 0) {
+                                 list.get(0).getEmpinfo().setEmp_role("1");
+                             }
+                            }catch(Exception e) {
+                                e.printStackTrace();
+                            }
                             message = Util.toJson("true",g.toJson(list.get(0), JoinEmpSkills.class),null);
                         } else {
                             message = Util.toJson("false", "No Data");

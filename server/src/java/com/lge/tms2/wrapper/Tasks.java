@@ -14,34 +14,34 @@ import java.io.Serializable;
  */
 public class Tasks implements Serializable {  
     private static final long serialVersionUID = 1L; 
-    private String project_type;
-    private String tasks;
+    private String project_task;
+    private String common_task;
 
     /**
-     * @return the project_type
+     * @return the project_task
      */
-    public String getProject_type() {
-        return project_type;
+    public String getProject_task() {
+        return project_task;
     }
 
     /**
-     * @param project_type the project_type to set
+     * @param project_task the project_task to set
      */
-    public void setProject_type(String project_type) {
-        this.project_type = project_type;
+    public void setProject_task(String project_task) {
+        this.project_task = project_task;
     }
 
     /**
-     * @return the tasks
+     * @return the common_task
      */
-    public String getTasks() {
-        return tasks;
+    public String getCommon_task() {
+        return common_task;
     }
 
     /**
-     * @param tasks the tasks to set
+     * @param common_task the common_task to set
      */
-    public void setTasks(String tasks) {
-        this.tasks = tasks;
+    public void setCommon_task(String common_task) {
+        this.common_task = common_task;
     }
 }

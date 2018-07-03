@@ -5,11 +5,8 @@
  */
 package com.lge.tms2.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.lge.tms2.db.TaskDAOImpl;
 import com.lge.tms2.wrapper.Tasks;
-import java.lang.reflect.Type;
 import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -28,8 +25,8 @@ public class TaskRestAPI {
     public String dummy() {
         System.out.println("Task name:");
         return "Available RestAPI are:\n"
-                + "GET -> alltask -> List all the Employee Information\n"
-                + "POST -> addtasklist -> Add Multiple Employee information into table\n"
+                + "GET -> all -> List all the Employee Information\n"
+                + "POST -> addlist -> Add Multiple Employee information into table\n"
                 + "POST -> taskInfo -> Show an Employee Information based on empID\n"
                 + "POST -> addtask -> Add Employee information into table\n"
                 + "POST -> deletask -> Delete Employee information from table\n"
@@ -38,7 +35,7 @@ public class TaskRestAPI {
                 
     }
 
-    @Path("alltask")
+    @Path("all")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getAllTask() {
@@ -47,24 +44,50 @@ public class TaskRestAPI {
             List<Tasks> list = new TaskDAOImpl().getAllTasks();
             if (list != null) {
                 if (!list.isEmpty()) {
-                    Gson g = new Gson();
-                    Type listType = new TypeToken<List<Tasks>>() {
-                    }.getType();
-                    return g.toJson(list, listType);
+                   // Gson g = new Gson();
+                    //Type listType = new TypeToken<List<Tasks>>() {
+                   // }.getType();
+                    message = Util.toJson("true", list, null);
                 } else {
-                    message = Util.toJson("Success", "List is Empty");
+                    message = Util.toJson("false", "List is Empty");
                 }
             } else {
-                message = Util.toJson("Success", "Something wrong with DB Connection");
+                message = Util.toJson("false", "Something wrong with DB Connection");
             }
         } catch (Exception e) {
-            message = Util.toJson("Failure", e.getMessage());
+            message = Util.toJson("false", e.getMessage());
+        }
+        return message;
+    }
+    
+
+    @Path("/{empid}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getEmpTask(@PathParam("empid") int empid) {
+        String message = "";
+        try {
+            List<Tasks> list = new TaskDAOImpl().getAllTasks("emp_id like '%"+ empid+"%'");
+            if (list != null) {
+                if (!list.isEmpty()) {
+                   // Gson g = new Gson();
+                    //Type listType = new TypeToken<List<Tasks>>() {
+                   // }.getType();
+                    message = Util.toJson("true", list, null);
+                } else {
+                    message = Util.toJson("false", "List is Empty");
+                }
+            } else {
+                message = Util.toJson("false", "Something wrong with DB Connection");
+            }
+        } catch (Exception e) {
+            message = Util.toJson("false", e.getMessage());
         }
         return message;
     }
     
     
-    @Path("addtasklist")
+    @Path("addlist")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public String addAllTasks(String input) {
@@ -124,7 +147,7 @@ public class TaskRestAPI {
             Tasks info = null;
             try {
                 info = Util.getTasks(input);
-                if (info != null && info.getProject_type() != null && info.getTasks() != null) {
+                if (info != null && info.getProject_task() != null && info.getCommon_task() != null) {
                     int status = new TaskDAOImpl().insertTasks(info);
                     System.out.println("status: " +status);
                     if (status > 0) {
@@ -156,11 +179,11 @@ public class TaskRestAPI {
             try {
                 info = Util.getTasks(input);
                 if (info != null) {
-                    boolean status = new TaskDAOImpl().deleteTasks(info.getProject_type() , info.getTasks());
+                    boolean status = new TaskDAOImpl().deleteTasks(info.getProject_task() , info.getCommon_task());
                     if(status) {
-                        message = Util.toJson("Success", "Employee Info deleted projecType:" + info.getProject_type());
+                        message = Util.toJson("Success", "Employee Info deleted projecType:" + info.getProject_task());
                     } else {
-                        message = Util.toJson("Failure", "Failed to delete projecType:" + info.getProject_type());
+                        message = Util.toJson("Failure", "Failed to delete projecType:" + info.getProject_task());
                     }
                     
                 } else {
@@ -186,9 +209,9 @@ public class TaskRestAPI {
                 if (info != null) {
                     int status = new TaskDAOImpl().updateTasks(info);
                     if(status > 0) {
-                        message = Util.toJson("Success", "Employee Info Updated getProject_type:" + info.getProject_type());
+                        message = Util.toJson("true", "Employee Info Updated getProject_type:" + info.getProject_task());
                     } else {
-                        message = Util.toJson("Failure", "Failed to update getProject_type:" + info.getProject_type());
+                        message = Util.toJson("false", "Failed to update getProject_type:" + info.getProject_task());
                     }
                     
                 } else {

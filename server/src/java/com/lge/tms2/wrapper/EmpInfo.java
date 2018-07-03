@@ -24,6 +24,7 @@ public class EmpInfo implements Serializable {
     private String emp_domain;
     private String approver_level_one;
     private String approver_level_two;
+    private String emp_role = "0";
 
     /**
      * @return the emp_id
@@ -168,6 +169,20 @@ public class EmpInfo implements Serializable {
      */
     public void setEmp_number(String emp_number) {
         this.emp_number = emp_number;
+    }
+
+    /**
+     * @return the emp_role
+     */
+    public String getEmp_role() {
+        return emp_role;
+    }
+
+    /**
+     * @param emp_role the emp_role to set
+     */
+    public void setEmp_role(String emp_role) {
+        this.emp_role = emp_role;
     }
     
     

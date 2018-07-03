@@ -26,7 +26,7 @@ public interface LogEffortDAO {
 
     public int updateLogEffort(LogEffort log);
     
-    public int updateLogEffort(String key, String value, String employeeId);
+    public int updateLogEffort(String key, String value, String employeeId, String date);
 
-    public boolean deleteLogEffort(String employeeId);
+    public boolean deleteLogEffort(String employeeId );
 }
