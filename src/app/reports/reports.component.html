@@ -1,0 +1,93 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0" fxLayoutAlign="center" style="background-color:transparent; margin-top:20px;">
+    <!-- <a fxFlex="5%">prev</a> -->
+    <div fxFlex="90%">
+            <!-- [selectedIndex]="selectedTab" -->
+                <!-- background-color:rgba(0,0,0,.04); use it if needed for the tab background -->
+                <div class="container" style="text-align:center; padding:5px; overflow-y:auto">
+                    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+                        <div fxFlex="50%">
+                            <mat-card style="padding-left: 4px; padding-right: 4px; height:25%">
+                                <mat-card-header>
+                                    <mat-card-title>
+                                       <b>Project</b> 
+                                    </mat-card-title>
+                                </mat-card-header>
+                            <mat-card-content>
+                                <div style="display: block; width: 500px; height:500px">
+                                    <canvas baseChart [data]="doughnutChartData_project" [labels]="doughnutChartLabels_project" [chartType]="doughnutChartType"
+                                     (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                    
+                                </div>
+                            </mat-card-content>
+
+                            </mat-card>
+                            <br>
+                            <mat-card style="padding-left: 4px; padding-right: 4px; height:25%">
+                                    <mat-card-header>
+                                        <mat-card-title>
+                                            <b>Skill Set</b>
+                                        </mat-card-title>
+                                    </mat-card-header>
+
+                                <mat-card-content>
+                                    <div style="display: block; width: 500px; height:500px">
+                                        <canvas baseChart [data]="doughnutChartData_project" [labels]="doughnutChartLabels_skills" [chartType]="doughnutChartType"
+                                         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                        
+                                    </div>
+                                </mat-card-content>
+                                </mat-card>
+    
+                        </div>
+                        <div fxFlex="50%">
+                                <mat-card style="padding-left: 4px; padding-right: 4px; height:25%">
+                                        <mat-card-header>
+                                            <mat-card-title>
+                                             <b>Job Task</b>   
+                                            </mat-card-title>
+                                        </mat-card-header>
+                                    <mat-card-content>
+                                        <div style="display: block; width: 500px; height:500px">
+                                            <canvas baseChart [data]="doughnutChartData_project" [labels]="doughnutChartLabels_tasks" [chartType]="doughnutChartType"
+                                             (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                            
+                                        </div>
+                                    </mat-card-content>
+        
+                                    </mat-card>
+        
+                            <br>
+                            <mat-card style="padding-left: 4px; padding-right: 4px; height:25%">
+                                <mat-card-header>
+                                    <mat-card-title>
+                                        <b>Weekily Working Hour Trend</b>
+                                    </mat-card-title>
+                                </mat-card-header>
+                            <mat-card-content>
+                                
+                                      <div style="display: block; width:500px; height:80px">
+                                      <canvas baseChart
+                                                  [datasets]="lineChartData"
+                                                  [labels]="lineChartLabels"
+                                                  [options]="lineChartOptions"
+                                                  [colors]="lineChartColors"
+                                                  [legend]="lineChartLegend"
+                                                  [chartType]="lineChartType"
+                                                  (chartHover)="chartHovered($event)"
+                                                  (chartClick)="chartClicked($event)"></canvas>
+                                      </div>
+                            </mat-card-content>
+
+                            </mat-card>
+                        </div>
+                    </div>
+
+                    <!-- </div> -->
+                </div>
+            
+    </div>
+    <!-- <a fxFlex="5%">next</a> -->
+   
+</div>
+
+

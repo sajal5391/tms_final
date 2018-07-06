@@ -1,10 +1,9 @@
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0" fxLayoutAlign="center" style="background-color:transparent; margin-top:40px; margin-bottom:0px">
 	<!-- <a fxFlex="5%">prev</a> -->
-	
+
 	<div fxFlex="90%">
-	
-		<mat-tab-group [selectedIndex]="selectedTab">
-			<mat-tab *ngFor="let logeffort of days" label={{logeffort.viewValue}}>
+		<mat-tab-group [selectedIndex]="selectedTab" [@.disabled]="true">
+			<mat-tab *ngFor="let approval of approvaldata" label={{approval.iris_date}}>
 				<!-- background-color:rgba(0,0,0,.04); use it if needed for the tab background -->
 				<div class="container" style="text-align:center;padding:10px; overflow-y:auto ; overflow-x:auto">
 					<!-- submitted/saved state instance -->
@@ -13,32 +12,35 @@
 							<div fxFlex="100%" style="overflow-x:auto">
 								<mat-card style="padding-left: 4px; padding-right: 4px; padding-top: 4px; overflow-x:auto; height:10cm;">
 
-									<div *ngFor="let emp of employee" style="overflow-x:auto">
-										<mat-grid-list cols="10" style="margin: 0;" [rowHeight]="!i ? '55px' : '50px'">
-											<mat-grid-tile colspan='1' style="background-color: rgba(0,0,0,.04);" role="listitem">
-												{{emp.emp_name}}
-
+									<div *ngFor="let emp of approval.empEfforts" style="overflow-x:auto">
+										<mat-grid-list cols="10" style="margin: 0;" [rowHeight]="!i ? '70px' : '50px'">
+											<mat-grid-tile style="background-color: rgba(0,0,0,.04);" role="listitem" [colspan]=1 [rowspan]=1>
+												<label style="font-size:15px">{{emp.emp_name}}</label>
 											</mat-grid-tile>
 
-											<mat-grid-tile colspan='2' style="background-color: rgba(0,0,0,.04); overflow-x:auto" role="listitem" [colspan]=6 [rowspan]=1>
-
-												<div *ngFor="let pb of progressBar">
-
-													<div style="height:30px; border-style:solid; margin:.5px; border-width:0.25px ; padding-right:5px;" [style.width.px]="pb.width">
-														<label style="font-size: 10px">{{pb.project}}</label>
-
+											<mat-grid-tile style="background-color: rgba(0,0,0,.04); overflow-x:auto" role="listitem" [colspan]=6 [rowspan]=1>
+												<div *ngIf="emp.effort.length; else elseBlock">
+													<div *ngFor="let pb of emp.effort">
+														<div style="height:30px; border-style:solid; margin:.5px; border-width:0.25px ; padding-right:5px;" [style.width.px]="pb.hours*effortboxwidth_perhour">
+															<label style="font-size: 10px">{{pb.project_name}}</label>
+															<label style="font-size: 10px">{{pb.hours}}</label>
+														</div>
 													</div>
-
 												</div>
+												<ng-template #elseBlock>
+													<div style="height:30px; border-style:solid; margin:.5px; border-width:0.25px ; padding-right:5px; width:500px">
+														<label style="font-size: 10px">
+															<b>not filled</b>
+														</label>
+													</div>
+												</ng-template>
+
 											</mat-grid-tile>
-											<mat-grid-tile colspan='2' style="background-color: rgba(0,0,0,.04);" role="listitem" [colspan]=3 [rowspan]=1>
-												<div style="display: inline-block;">
-													<button mat-raised-button color="primary">Approve</button>
-													<button mat-raised-button color="warn">Reject</button>
-													<button mat-raised-button color="accent" (click)="openDialog()">View Details</button>
-
-
-
+											<mat-grid-tile style="background-color: rgba(0,0,0,.04);" role="listitem" [colspan]=3 [rowspan]=1>
+												<div>
+													<button mat-stroked-button color="primary">Approve</button>
+													<button mat-stroked-button color="warn">Reject</button>
+													<button mat-stroked-button color="accent" (click)="openDialog()">View Details</button>
 												</div>
 											</mat-grid-tile>
 
@@ -47,7 +49,8 @@
 									</div>
 									<mat-card-actions style="text-align: right; margin-right: 0px; margin-left: 0px">
 
-										<button mat-raised-button color="primary" style="width:30%">Approve All</button>
+													
+													<button mat-stroked-button color="primary" style="width:30%" (click)="approveAll(approval)">Approve All</button>
 									</mat-card-actions>
 
 								</mat-card>
@@ -103,5 +106,16 @@
 			</mat-tab>
 		</mat-tab-group>
 	</div>
-
+	<a class="navigation navigation-prev " aria-label="Previous page: this" (click)="prevNextWeek('prev')">
+		<span>
+			<mat-icon>chevron_left</mat-icon>
+		</span>
+		<span style="font-size:0.3em;">Prev</span>
+	</a>
+	<a class="navigation navigation-next " aria-label="Next page: Number" (click)="prevNextWeek('next')">
+		<span>
+			<mat-icon>chevron_right</mat-icon>
+		</span>
+		<span style="font-size:0.3em;">Next</span>
+	</a>
 </div>

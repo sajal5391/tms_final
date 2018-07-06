@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LogeffortComponent } from '../logeffort/logeffort.component';
 import { ApprovalComponent } from '../approval/approval.component';
+import { ReportsComponent } from '../reports/reports.component';
+
 
 const dashRoutes: Routes = [
     { 
@@ -13,6 +15,11 @@ const dashRoutes: Routes = [
         path: 'approval', 
         component: ApprovalComponent 
     },
+    { 
+        path: 'reports', 
+        component: ReportsComponent 
+    },
+
 ];
 
 //taken from angular.io

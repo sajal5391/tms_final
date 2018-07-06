@@ -1,8 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ApprovalDetails } from '../shared/approval';
+import { EmpApproval } from '../shared/emp-approval';
 import { DatePipe } from '@angular/common';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
+import { FormControl, Validators } from '@angular/forms';
+import { Logeffort } from '../shared/logeffort';
+import { LOGEFFORTS } from '../shared/mock-logeffort';
+import { LogeffortTwo } from '../shared/logeffort-two';
+import { LOGEFFORTSTWO } from '../shared/mock-two-logeffort';
+import { STATE } from '../shared/config';
+import { ApprovalService } from './approval.service';
+import { LoaderService } from '../loader/loader.service';
+import { ActivatedRoute } from '@angular/router';
+
+
 // import Chart from 'chart.js/src/chart.js';
 
 
@@ -15,14 +27,24 @@ import { EmployeeDetailsComponent } from '../employee-details/employee-details.c
 export class ApprovalComponent implements OnInit {
 
 	employee: any;
-	time: any;
-	hrs: any;
-	mins: any;
+	approvaldata : any;
 	selectedTab: any;
-	donut: any;
+	screen_width : any;
+	effortboxwidth_perhour : any;
+    employee_name = [{name:''}];
+    totaltime : any;
+	date :any;
+	state : any;
 
-	height = 20;
-	width = 20;
+	constructor(public dialog: MatDialog, 
+		private approvalService: ApprovalService, 
+		private loaderService: LoaderService,
+	private route : ActivatedRoute) { 
+
+	 this.screen_width = (window.screen.width) + "px";
+	 this.effortboxwidth_perhour = ((Math.floor((.6*(.9*((window.screen.width))))/11))-10);
+  
+	}
 
 	/*openDialog(): void {
 		const dialogRef = this.dialog.open(EmployeeDetailsComponent, {
@@ -36,7 +58,7 @@ export class ApprovalComponent implements OnInit {
 		});
 	  }
 */
-	public doughnutChartLabels_project: string[] = ['CV1', 'CV3', 'CV5'];
+	public doughnutChartLabels_project:string[]= ['CV1' , 'CV3' , 'CV5'];
 	public doughnutChartLabels_tasks: string[] = ['Project Management', 'Integration', 'Development'];
 	public doughnutChartLabels_skills: string[] = ['Angular', 'Java', 'Android'];
 	public doughnutChartData_project: number[] = [350, 450, 100];
@@ -45,120 +67,46 @@ export class ApprovalComponent implements OnInit {
 	public doughnutChartType: string = 'doughnut';
 
 
-	days = [
-		{ value: 'day1', viewValue: 'Wed Aug 01' },
-		{ value: 'day2', viewValue: 'Thu Aug 02' },
-		{ value: 'day3', viewValue: 'Fri Aug 03' },
-		{ value: 'day4', viewValue: 'Sat Aug 04' },
-		{ value: 'day5', viewValue: 'Sun Aug 05' },
-		{ value: 'day6', viewValue: 'Mon Aug 06' },
-		{ value: 'day7', viewValue: 'Tue Aug 07' }
-	];
+    loadApprovalEffort(): void {
+        this.approvalService.loadApprovalEffort()
+            .subscribe(
+                (response) => {
+                    console.log('approvaleffort submit response is ', response);
+                    if (response['status'] == 'true') {
 
-	minsToHours(hours, mins): any {
-		var total = (hours * 60 + mins) / 60;
-		console.log("total is", total);
-		var h = total.toString().split('.')[0];
-		if (total.toString().split('.')[1]) {
-			var m = "0." + total.toString().split('.')[1];
-		} else {
-			var m = "0";
-		}
-		console.log("h is", h);
-		console.log("m is", m);
-		m = (+m * 60).toFixed(0);
-		if (m.toString().length > 1) {
-			var t = h + ':' + m
-		} else {
-			var t = h + ':0' + m
-		}
-		return t;
-	}
-
-	progressBar = [
-
-		{ width: 80, project: "CV1 - 2hrs" },
-		{ width: 90, project: "CV3 - 2hrs" },
-		{ width: 90, project: "CV5 - 2hrs" },
-		{ width: 70, project: "CV7 - 1hrs" },
-		{ width: 90, project: "Joan - 2hrs" },
-		{ width: 80, project: "Common - 1hrs" },
-		{ width: 60, project: "DIVA-1hrs" }
-
-
-	];
-
-	activeTab(array): any {
-		return array.map(function (item) { return item.isActive; }).indexOf(true);
-	}
-
-	constructor(public dialog: MatDialog) {
-
-	}
-
-	summerizeUserEffort(arr): any {
-        let self = this;
-        var array = JSON.parse(JSON.stringify(arr)); //arr.map(x => Object.assign({}, x)); //deep copy of array (without reference) with this this.userLogEffort will not be effected
-        array.forEach(function (val) {
-            val.task = [{ skill_set: val.skill_set, task_name: val.task_name, hours: val.hours, mins: val.mins }];
-        });
-
-        var output = [];
-
-        array.forEach(function (value) {
-            console.log('output is', output);
-            var existing = output.filter(function (v, i) {
-                return v.project_name == value.project_name;
-            });
-            console.log('existing is', existing);
-            if (existing.length) {
-                var existingIndex = output.indexOf(existing[0]);
-                output[existingIndex].task = output[existingIndex].task.concat(value.task);
-            } else {
-                output.push(value);
-            }
-        });
-
-        console.log('final output is', output);
-     
-        output.forEach(function (item) {
-            if (item.task.length > 1) {
-                var totalHours = item.task.reduce(function (v, n) {
-                    return v + +n.hours;
-                }, 0);
-                var totalMins = item.task.reduce(function (v, n) {
-                    return v + +n.mins;
-                }, 0);
-
-                item.time = self.minsToHours(totalHours, totalMins);
-            } else {
-                item.time = self.minsToHours(+item.task[0].hours, +item.task[0].mins);
-            }
-
-        })
-        return output;
-
+                        localStorage.setItem('approvalEffort', JSON.stringify(response['data']));
+                        // this.openNotificationbar('Effort data submitted successfully!', 'Close');
+                    } else {
+                        // this.openNotificationbar(response['message'], 'Close');
+                    }
+                }, (err) => {
+                    console.error('approvaleffort submit error ', err);
+                    this.loaderService.hide();
+                }, () => {
+                    this.loaderService.hide(); //on complete hide the loader
+                }
+            );
 	}
 	
-
-	effortSumarry(obj): any {
-        var self = this;
-        obj.time_sheet.forEach(function (item) {
-            // if (item.effort.length) {
-            //     item.summaryEffort = self.summerizeUserEffort(item.effort);
-            // }
-            item.displayDate = new Date(item.iris_date.split('-')[2], item.iris_date.split('-')[1], item.iris_date.split('-')[0]).toDateString().slice(0,10);
-            item.summaryEffort = self.summerizeUserEffort(item.effort);
-        });
-        return obj;
-    }
+approveAll(obj){
+	this.date = obj.iris_date;
+	var arr = obj.empEfforts;
+	this.state = true;
+	//this.approvalService.changeStatus(this.date ,this.state);
+}
 	ngOnInit() {
 
-		this.employee = ApprovalDetails;
-		this.time = this.minsToHours(this.employee.efforts, this.employee.efforts);
-		//this.selectedTab = this.activeTab(this.employee);
-		this.selectedTab = 0;
-
+        this.loadApprovalEffort();
+        console.log("ApprovalEffort is called ");
+        console.log(JSON.parse(localStorage.getItem('employeeInfo')));
+		console.log("screen width is " + this.screen_width , "perhourwidth is " + this.effortboxwidth_perhour);
+		this.route.data
+            .subscribe((res: any) => {
+                console.log('resolved Approval list is ', res);
+				this.approvaldata = JSON.parse(JSON.stringify(res.approval.data));//this.effortSumarry(res.data); ;
+				//this.totaltime = this.totaltime(this.approvaldata.iris_date , this.approvaldata.empEfforts.emp_name , this.approvaldata.empEfforts.effort);
+				console.log("employee_details inside are " + this.approvaldata);
+            })
 	}
 
 }
