@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LogeffortComponent } from '../logeffort/logeffort.component';
-
+import { ReportsComponent } from '../reports/reports.component';
 import { DashRoutingModule } from './dash-routing.module'
 import { ApprovalComponent } from '../approval/approval.component';
 
@@ -37,6 +37,8 @@ import { DashService } from './dash.service';
 import { LogeffortService } from '../logeffort/logeffort.service';
 import { ChartsModule } from 'ng2-charts';
 import { SharedService } from '../shared/shared.service';
+import { ApprovalService } from '../approval/approval.service';
+
 //import { DashResolve } from './dash.resolve.service';
 
 @NgModule({
@@ -73,10 +75,12 @@ import { SharedService } from '../shared/shared.service';
     declarations: [
         LogeffortComponent,
         ApprovalComponent,
+        ReportsComponent,
     ],
     providers: [
         DashService,
         LogeffortService,
+        ApprovalService,
         //DashResolve,
         SharedService
     ]

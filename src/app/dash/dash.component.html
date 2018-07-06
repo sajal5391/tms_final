@@ -14,10 +14,17 @@
         </a>
         <mat-menu #menu="matMenu" [overlapTrigger]="false">
             <button mat-menu-item [routerLink]="['logeffort']">Log Effort</button>
-            <button mat-menu-item [routerLink]="['approval']" *ngIf="employee.empinfo.emp_role == ROLES.APPROVER || employee.empinfo.emp_role == ROLES.ADMIN">Approval</button>
-            <button mat-menu-item>My Project List</button>
+            <button mat-menu-item [routerLink]="['approval']">Approval</button>
+         </mat-menu>
+        <a mat-button [matMenuTriggerFor]="menu_reports" style="font-size: 16px">Reports
+            <mat-icon>arrow_drop_down</mat-icon>
+        </a>
+        <mat-menu #menu_reports="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item [routerLink]="['reports']">Personal Log Analysis</button>
+        <button mat-menu-item [routerLink]="['reports']">Team Log Analysis</button>
+        <button mat-menu-item [routerLink]="['reports']">Domain Log Analysis</button>
+        <button mat-menu-item [routerLink]="['reports']">Department Log Analysis</button>
         </mat-menu>
-        <a mat-button style="font-size: 16px">Report</a>
         <a mat-button style="font-size: 16px">Monitoring</a>
     </div>
 </mat-toolbar>

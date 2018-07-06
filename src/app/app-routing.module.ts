@@ -5,9 +5,11 @@ import { AuthUserGuard } from './auth-user.guard';
 import { LoginComponent } from './login/login.component';
 import { DashComponent } from './dash/dash.component';
 import { LogeffortComponent } from './logeffort/logeffort.component';
+import { ReportsComponent } from './reports/reports.component';
 import { ApprovalComponent } from './approval/approval.component';
 import { DashResolve, ProjectResolve } from './dash/dash.resolve.service';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { ApprovalResolve } from './approval/approval.resolve.service';
 
 const routes: Routes = [
 	{
@@ -34,8 +36,14 @@ const routes: Routes = [
 			}, {
 				path: 'approval',
 				component: ApprovalComponent,
+				resolve : {
+					approval: ApprovalResolve
+				}
 
-			}
+			},{
+				path: 'reports',
+				component: ReportsComponent,
+			},
 		]
 	},
 	{
