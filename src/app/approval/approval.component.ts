@@ -35,6 +35,7 @@ export class ApprovalComponent implements OnInit {
     totaltime : any;
 	date :any;
 	state : any;
+<<<<<<< HEAD
 	emp_id_arr = [];
 	constructor(public dialog: MatDialog, 
 		private approvalService: ApprovalService, 
@@ -52,6 +53,18 @@ export class ApprovalComponent implements OnInit {
             duration: 5000,
         });
     }
+=======
+
+	constructor(public dialog: MatDialog, 
+		private approvalService: ApprovalService, 
+		private loaderService: LoaderService,
+	private route : ActivatedRoute) { 
+
+	 this.screen_width = (window.screen.width) + "px";
+	 this.effortboxwidth_perhour = ((Math.floor((.6*(.9*((window.screen.width))))/11))-10);
+  
+	}
+>>>>>>> da87ba741a32241e4602307c613b069e8df2e8b9
 
 	/*openDialog(): void {
 		const dialogRef = this.dialog.open(EmployeeDetailsComponent, {
@@ -93,6 +106,7 @@ export class ApprovalComponent implements OnInit {
                 }
             );
 	}
+<<<<<<< HEAD
 	
 approveAll(obj){
 	this.date = obj.iris_date;
@@ -157,6 +171,15 @@ performAction(obj,number){
 	
 }
 
+=======
+	
+approveAll(obj){
+	this.date = obj.iris_date;
+	var arr = obj.empEfforts;
+	this.state = true;
+	//this.approvalService.changeStatus(this.date ,this.state);
+}
+>>>>>>> da87ba741a32241e4602307c613b069e8df2e8b9
 	ngOnInit() {
 
         this.loadApprovalEffort();

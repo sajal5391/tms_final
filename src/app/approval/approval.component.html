@@ -13,15 +13,26 @@
 								<mat-card style="padding-left: 4px; padding-right: 4px; padding-top: 4px; overflow-x:auto; height:10cm;">
 
 									<div *ngFor="let emp of approval.empEfforts" style="overflow-x:auto">
+<<<<<<< HEAD
 										<mat-grid-list cols="10" style="margin: 0;" [rowHeight]="!i ? '75px' : '50px'">
+=======
+										<mat-grid-list cols="10" style="margin: 0;" [rowHeight]="!i ? '70px' : '50px'">
+>>>>>>> da87ba741a32241e4602307c613b069e8df2e8b9
 											<mat-grid-tile style="background-color: rgba(0,0,0,.04);" role="listitem" [colspan]=1 [rowspan]=1>
 												<label style="font-size:15px">{{emp.emp_name}}</label>
 											</mat-grid-tile>
 
+<<<<<<< HEAD
 											<mat-grid-tile style="background-color: rgba(0,0,0,.04); overflow-x:auto; display:inline" role="listitem" [colspan]=6 [rowspan]=1>
 												<div *ngIf="emp.effort.length; else elseBlock" style="display:inline">
 													<div *ngFor="let pb of emp.effort" style="display:inline">
 														<div style="height:30px;border-style:solid; margin:.25px; border-width:0.25px ; padding-right:5px;display:inline-block;" [style.width.px]="pb.hours*effortboxwidth_perhour">
+=======
+											<mat-grid-tile style="background-color: rgba(0,0,0,.04); overflow-x:auto" role="listitem" [colspan]=6 [rowspan]=1>
+												<div *ngIf="emp.effort.length; else elseBlock">
+													<div *ngFor="let pb of emp.effort">
+														<div style="height:30px; border-style:solid; margin:.5px; border-width:0.25px ; padding-right:5px;" [style.width.px]="pb.hours*effortboxwidth_perhour">
+>>>>>>> da87ba741a32241e4602307c613b069e8df2e8b9
 															<label style="font-size: 10px">{{pb.project_name}}</label>
 															<label style="font-size: 10px">{{pb.hours}}</label>
 														</div>
@@ -38,9 +49,15 @@
 											</mat-grid-tile>
 											<mat-grid-tile style="background-color: rgba(0,0,0,.04);" role="listitem" [colspan]=3 [rowspan]=1>
 												<div>
+<<<<<<< HEAD
 													<button mat-stroked-button color="primary" (click)="performAction(approval,1)">Approve</button>
 													<button mat-stroked-button color="warn" (click)="performAction(approval,2)">Reject</button>
 													<button mat-stroked-button color="accent" (click)="performAction(approval,3)">View Details</button>
+=======
+													<button mat-stroked-button color="primary">Approve</button>
+													<button mat-stroked-button color="warn">Reject</button>
+													<button mat-stroked-button color="accent" (click)="openDialog()">View Details</button>
+>>>>>>> da87ba741a32241e4602307c613b069e8df2e8b9
 												</div>
 											</mat-grid-tile>
 

@@ -20,9 +20,17 @@ export class ApprovalService {
         return this.http.get<any>(this.loadApprovalEffortUrl);
     }  
 
+<<<<<<< HEAD
     changeStatus(arr: any): Observable<any> {
         var logEffortUrl = SERVER_URL + 'api/approval/update';
         console.log('logEffort api url is', logEffortUrl);
         return this.http.post<any>(logEffortUrl, arr);
     }   
+=======
+    changeStatus(date: any, state: number): Observable<any> {
+        var logEffortUrl = SERVER_URL + 'api/effort/add/' + state;
+        console.log('logEffort api url is', logEffortUrl);
+        return this.http.post<any>(logEffortUrl, date);
+    }
+>>>>>>> da87ba741a32241e4602307c613b069e8df2e8b9
 }
