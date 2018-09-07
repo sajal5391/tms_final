@@ -1,0 +1,334 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="15px" fxLayoutAlign="center" style="background-color:transparent; margin-top:40px;">
+  <div fxFlex="30%">
+
+    <mat-card style="padding: 0; margin-bottom: 20px" class="active">
+      <mat-card-header style="background-color: rgb(0, 0, 0, 0.04)">
+        <h4 style="margin: 10px;">Employee List</h4>
+      </mat-card-header>
+      <mat-card-content style="padding: 5px;">
+        <ul style="display:flex; flex-wrap: wrap; list-style: none;">
+          <li *ngFor="let item of empList" style="padding: 4px;">
+            <mat-card style="height: 30px; display: flex;
+                          justify-content: center;
+                          align-items: center; padding: 4px;" (click)="showDetails(item.emp_id)" [ngClass]="{'selected': item.selected}">
+              <mat-card-header style="margin: 0px;">
+                <mat-card-title style="margin: 0px; font-size: 1em; display: block;">{{item.emp_name}}</mat-card-title>
+              </mat-card-header>
+            </mat-card>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <div fxFlex="30%">
+
+    <mat-card style="padding: 0; margin-bottom: 20px" class="active">
+      <mat-card-header style="background-color: rgb(0, 0, 0, 0.04)">
+        <h4 style="margin: 10px;">Before</h4>
+      </mat-card-header>
+      <mat-card-content style="padding: 5px;">
+
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%;" >
+              <input matInput placeholder="Group" [(ngModel)]="before.empinfo.emp_group" [style.background-color]="group_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Domain" [(ngModel)]="before.empinfo.emp_domain" [style.background-color]="domain_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Primary Skill 1" [(ngModel)]="before.skill.primary_skill_one" [style.background-color]="pri_skill1_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Primary Skill 2" [(ngModel)]="before.skill.primary_skill_two" [style.background-color]="pri_skill2_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Primary Skill 3" [(ngModel)]="before.skill.primary_skill_three" [style.background-color]="pri_skill3_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Secondary Skill 1" [(ngModel)]="before.skill.secondary_skill_one" [style.background-color]="sec_skill1_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Secondary Skill 2" [(ngModel)]="before.skill.secondary_skill_two" [style.background-color]="sec_skill2_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Secondary Skill 3" [(ngModel)]="before.skill.secondary_skill_three" [style.background-color]="sec_skill3_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Language 1" [(ngModel)]="before.skill.language_one" [style.background-color]="lang1_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Language 1 Level" [(ngModel)]="before.skill.language_one_level" [style.background-color]="lang1_level_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Language 2" [(ngModel)]="before.skill.language_two" [style.background-color]="lang2_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Language 2 Level" [(ngModel)]="before.skill.language_two_level" [style.background-color]="lang2_level_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;" >
+            <mat-form-field style="font-size: 0.9em; width:100%">
+              <input matInput placeholder="Os" [(ngModel)]="before.skill.os" [style.background-color]="os_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Os Level" [(ngModel)]="before.skill.os_level" [style.background-color]="os_level_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Approver One" [(ngModel)]="before.empinfo.approver_level_one" [style.background-color]="approver_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Approver Two" [(ngModel)]="before.empinfo.approver_level_two" [style.background-color]="approver2_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+      
+      </mat-card-content>
+    </mat-card>
+    <button mat-raised-button style="background-color:rgba(0,0,0,.04);color:red;margin-left:80%" (click)="sendResponse('reject')" [disabled]="disable_reject">
+      <!-- #3f51B5 -->
+      Reject
+    </button>
+  </div>
+  <div fxFlex="30%">
+
+    <mat-card style="padding: 0; margin-bottom: 20px" class="active">
+      <mat-card-header style="background-color: rgb(0, 0, 0, 0.04)">
+        <h4 style="margin: 10px;">After</h4>
+      </mat-card-header>
+      <mat-card-content style="padding: 5px;">
+
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%;" >
+              <input matInput placeholder="Group" [(ngModel)]="after.empinfo.emp_group" [style.background-color]="group_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Domain" [(ngModel)]="after.empinfo.emp_domain" [style.background-color]="domain_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Primary Skill 1" [(ngModel)]="after.skill.primary_skill_one" [style.background-color]="pri_skill1_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Primary Skill 2" [(ngModel)]="after.skill.primary_skill_two" [style.background-color]="pri_skill2_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Primary Skill 3" [(ngModel)]="after.skill.primary_skill_three" [style.background-color]="pri_skill3_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Secondary Skill 1" [(ngModel)]="after.skill.secondary_skill_one" [style.background-color]="sec_skill1_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Secondary Skill 2" [(ngModel)]="after.skill.secondary_skill_two" [style.background-color]="sec_skill2_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Secondary Skill 3" [(ngModel)]="after.skill.secondary_skill_three" [style.background-color]="sec_skill3_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Language 1" [(ngModel)]="after.skill.language_one" [style.background-color]="lang1_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Language 1 Level" [(ngModel)]="after.skill.language_one_level" [style.background-color]="lang1_level_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Language 2" [(ngModel)]="after.skill.language_two" [style.background-color]="lang2_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Language 2 Level" [(ngModel)]="after.skill.language_two_level" [style.background-color]="lang2_level_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;" >
+            <mat-form-field style="font-size: 0.9em; width:100%">
+              <input matInput placeholder="Os" [(ngModel)]="after.skill.os" [style.background-color]="os_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Os Level" [(ngModel)]="after.skill.os_level" [style.background-color]="os_level_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Approver One" [(ngModel)]="after.empinfo.approver_level_one" [style.background-color]="approver_color" disabled>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" style=" background-color:rgba(0,0,0,.04); display: flex;
+                justify-content: left;
+                align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%" >
+              <input matInput placeholder="Approver Two" [(ngModel)]="after.empinfo.approver_level_two" [style.background-color]="approver2_color" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+      
+      </mat-card-content>
+    </mat-card>
+    <button mat-raised-button style="background-color:rgba(0,0,0,.04);color:green;margin-right:20%" (click)="sendResponse('approve')" [disabled]="disable_approve">
+      <!-- #3f51B5 -->
+      Approve
+    </button>
+
+  </div>
+</div>
+<br>
+

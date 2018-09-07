@@ -1,0 +1,265 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="15px" fxLayoutAlign="center" style="background-color:transparent; margin-top:40px;">
+	<div fxFlex="30%" fxLayoutAlign=" stretch">
+		<mat-card style="padding: 0; width:100%;">
+			<mat-card-header style="background-color: rgb(0, 0, 0, 0.04)">
+		Employee List
+			</mat-card-header>
+			<mat-card-content style="padding: 5px;">
+        <mat-accordion *ngFor="let groups of final_groups; let k = index">
+          <mat-expansion-panel >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+            {{groups}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            
+            <mat-card style="height: 30px; display: flex;
+            justify-content: center;
+            align-items: center; padding: 4px;">
+<mat-card-header style="margin: 0px;">
+  <mat-card-title style="margin: 0px; font-size: 1em; display: block;"></mat-card-title>
+</mat-card-header>
+</mat-card>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+			</mat-card-content>
+			<!-- <mat-card-actions style="text-align: right;">
+				<button mat-stroked-button style="position: absolute; right: 15px; bottom: 5px;  color: #C3003C " (click)="addNew()" class="save">Add New Project</button>
+			</mat-card-actions> -->
+		</mat-card>
+	</div>
+	<div fxFlex="60%" fxLayoutAlign=" stretch">
+		<mat-card style="padding: 0; margin: 0; width:100%;">
+			<mat-card-header style="background-color: rgb(0, 0, 0, 0.04)">
+        <h4 style="margin: 10px;">Employee Profile</h4>
+        <button mat-stroked-button style="position: absolute; right: 4px; top: 5px; color: #C3003C " class="save">Edit</button> 
+			</mat-card-header>
+			<mat-card-content style="padding: 5px;">
+			  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+        
+          <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+          justify-content: left;
+          align-items: center; padding:10px 0 10px 0;">
+          <mat-form-field style="font-size: 0.9em; width:100%">
+            <input matInput placeholder="Employee ID">
+          </mat-form-field>
+        </div>
+        <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+          justify-content: left;
+          align-items: center; padding:10px 0 10px 0;">
+          <mat-form-field style="font-size: 0.9em; width:100%">
+            <input matInput placeholder="Employee Name">
+          </mat-form-field> 
+        </div>
+        <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+          justify-content: left;
+          align-items: center; padding:10px 0 10px 0;">
+          <mat-form-field style="font-size: 0.9em; width:100%">
+            <input matInput placeholder="Employee Email">
+          </mat-form-field>
+        </div>
+        <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+          justify-content: left;
+          align-items: center; padding:10px 0 10px 0;">
+        <mat-form-field style="font-size: 0.9em; width:100%">
+            <input matInput placeholder="Employee Designation">
+          </mat-form-field>
+        </div>
+        </div>
+        
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+                
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+            justify-content: left;
+            align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%">
+              <mat-select placeholder="group">
+                  <mat-option *ngFor="let key of final_groups" value={{key}}>{{key}}</mat-option>
+                  
+              </mat-select>
+          </mat-form-field>
+          </div>
+          <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+            justify-content: left;
+            align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%">
+              <mat-select placeholder="domain" >
+                <mat-option *ngFor="let key of final_groups" value={{key}}>{{key}}</mat-option>
+                  
+              </mat-select>
+          </mat-form-field>
+          </div>
+          <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+            justify-content: left;
+            align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%">
+                <input matInput placeholder="Primary Skill Level1" >
+             
+          </mat-form-field>
+          </div>
+          <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+            justify-content: left;
+            align-items: center; padding:10px 0 10px 0;">
+            <mat-form-field style="font-size: 0.9em; width:100%">
+                <input matInput placeholder="Primary Skill Level2" >
+          </mat-form-field>
+          </div>
+          </div>
+
+          <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+                
+              <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                  <input matInput placeholder="Primary Skill Level3">
+            </mat-form-field>
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                  <input matInput placeholder="Secondary Skill Level1" >
+            </mat-form-field>
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                  <input matInput placeholder="Secondary Skill Level2" >
+            </mat-form-field>
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                  <input matInput placeholder="Secondary Skill Level3">
+            </mat-form-field>
+            </div>
+            </div>
+        
+          <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+                
+              <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                  <mat-select placeholder="Language1" >
+                      <mat-option value="C">C</mat-option>
+                      <mat-option value="C++">C++</mat-option>
+                      <mat-option value="Java">Java</mat-option>
+                      <mat-option value="Selenium">Selenium</mat-option>
+                      <mat-option value="Android">Android</mat-option>
+                      <mat-option value="Java Script">Java Scripts</mat-option>
+                    <mat-option value="MATLAB">MATLAB</mat-option>
+                    <mat-option value="Servlets">Servlets</mat-option>
+                    <mat-option value="C#">C#</mat-option>
+                    <mat-option value="Shell Script">Shell Script</mat-option>
+                    <mat-option value="SQL">SQL</mat-option>
+                    <mat-option value="Node.js">Node.js</mat-option>
+                    </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                  <mat-select placeholder="Language1 Level" >
+                      <mat-option value="Entry Level">Entry Level</mat-option>
+                    <mat-option value="Good">Good</mat-option>
+                      <mat-option value="Expert">Expert</mat-option>
+                      
+                    </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                <mat-select placeholder="Language2">
+                    <mat-option value="C">C</mat-option> 
+                    <mat-option value="C++">C++</mat-option>
+                    <mat-option value="Java">Java</mat-option>
+                    <mat-option value="Selenium">Selenium</mat-option>
+                    <mat-option value="Android">Android</mat-option>
+                    <mat-option value="Java Script">Java Scripts</mat-option>
+                    <mat-option value="MATLAB">MATLAB</mat-option>
+                    <mat-option value="Servlets">Servlets</mat-option>
+                    <mat-option value="C#">C#</mat-option>
+                    <mat-option value="Shell Script">Shell Script</mat-option>
+                    <mat-option value="SQL">SQL</mat-option>
+                    <mat-option value="Node.js">Node.js</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                <mat-select placeholder="Language2 Level" >
+                    <mat-option value="Entry Level">Entry Level</mat-option>
+                    <mat-option value="Good">Good</mat-option>
+                      <mat-option value="Expert">Expert</mat-option>
+                  </mat-select>
+            </mat-form-field>
+            </div>
+            </div>
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+                
+              <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                <mat-select placeholder="OS" >
+                    <mat-option value="Linux">Linux</mat-option>
+                    <mat-option value="Windows">Windows</mat-option>
+                    <mat-option value="Android">Android</mat-option>
+                  </mat-select>
+            </mat-form-field>
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                <mat-select placeholder="OS Level">
+                    <mat-option value="Entry Level">Entry Level</mat-option>
+                    <mat-option value="Good">Good</mat-option>
+                      <mat-option value="Expert">Expert</mat-option>
+                  </mat-select>
+            </mat-form-field>
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                  
+                <input matInput placeholder="Approver1" >
+            </mat-form-field>
+            </div>
+            <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+              justify-content: left;
+              align-items: center; padding:10px 0 10px 0;">
+              <mat-form-field style="font-size: 0.9em; width:100%">
+                  
+                <input matInput placeholder="Approver2" >
+            </mat-form-field>
+            </div>
+            </div>
+          
+            <mat-card-actions style="text-align: right; margin-right: 0px; margin-left: 0px">
+              <button mat-raised-button style="background-color:rgba(0,0,0,.04);color:red;">
+                Cancel
+              </button>
+              <button mat-raised-button style="background-color:rgba(0,0,0,.04);color: green">
+                <!-- #3f51B5 -->
+                Submit
+              </button>
+  
+            </mat-card-actions> 
+			</mat-card-content>
+
+		</mat-card>
+	</div>
+</div>

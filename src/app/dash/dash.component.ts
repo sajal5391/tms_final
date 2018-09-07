@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 // import { Employee } from '../shared/employee';
 import { EMPLOYEEDETAILS } from '../shared/mock-employee';
@@ -6,6 +6,7 @@ import { EmployeeProfileComponent } from '../employee-profile/employee-profile.c
 import { DashService } from './dash.service';
 import { LoaderService } from '../loader/loader.service';
 import { ROLES } from '../shared/config';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-dash',
@@ -14,9 +15,10 @@ import { ROLES } from '../shared/config';
 })
 export class DashComponent implements OnInit {
 
+    window: any = window;
     ROLES: any;
 
-    constructor(public dialog: MatDialog, private dashService: DashService, private loaderService: LoaderService) { }
+    constructor(private router: Router,public dialog: MatDialog, private dashService: DashService, private loaderService: LoaderService) { }
 
     openDialog(): void {
         const dialogConfig = new MatDialogConfig();
@@ -33,10 +35,33 @@ export class DashComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.window.sidenav = true;
         this.loadEffort();
         console.log('loadEffort is called');
         console.log(JSON.parse(localStorage.getItem('employeeInfo')));
         this.ROLES = ROLES;
+    }
+
+    logout():void{
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        let dialogRef = this.dialog.open(DialogLogout, {
+            width: '250px',
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if(result){
+                localStorage.clear();
+        //        window.location.reload();
+        this.router.navigate(['/login'], { replaceUrl: true });
+		console.log("logout successfull");
+            }else{
+                console.log("logout failed");
+            }
+         console.log('The dialog was closed');
+        });
     }
 
     employee = JSON.parse(localStorage.getItem('employeeInfo'));//EMPLOYEEDETAILS;
@@ -53,6 +78,7 @@ export class DashComponent implements OnInit {
                     } else {
                         // this.openNotificationbar(response['message'], 'Close');
                     }
+                    this.loaderService.hide();
                 }, (err) => {
                     console.error('logeffort submit error ', err);
                     this.loaderService.hide();
@@ -62,4 +88,22 @@ export class DashComponent implements OnInit {
             );
     }
 
+    
+
+}
+
+
+@Component({
+    selector: 'dialog-logout',
+    templateUrl: './dialog-logout.html',
+})
+export class DialogLogout{
+
+    constructor(
+        public dialogRef: MatDialogRef<DialogLogout>,
+        @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
 }

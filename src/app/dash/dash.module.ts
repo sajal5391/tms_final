@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LogeffortComponent } from '../logeffort/logeffort.component';
-import { ReportsComponent } from '../reports/reports.component';
+
 import { DashRoutingModule } from './dash-routing.module'
 import { ApprovalComponent } from '../approval/approval.component';
 
@@ -32,12 +32,26 @@ import {
     MatGridListModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 } from '@angular/material';
 import { DashService } from './dash.service';
 import { LogeffortService } from '../logeffort/logeffort.service';
 import { ChartsModule } from 'ng2-charts';
 import { SharedService } from '../shared/shared.service';
 import { ApprovalService } from '../approval/approval.service';
+import { MyProjectListComponent } from '../my-project-list/my-project-list.component';
+import { AboutUsComponent } from '../about-us/about-us.component';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { EditProfileService } from '../edit-profile/edit-profile.service';
+import { LoginComponent } from '../login/login.component';
+import { AddEmployeeComponent } from '../add-employee/add-employee.component';
+import { OrganizationComponent } from '../organization/organization.component';
+import { ApproveCmsComponent } from '../approve-cms/approve-cms.component';
+import { AddProfileService } from '../add-employee/add-profile.service';
+import { OrganizationService } from '../organization/organization.service';
+import { ApproveCmsService } from '../approve-cms/approve-cms.service';
+
 
 //import { DashResolve } from './dash.resolve.service';
 
@@ -70,19 +84,31 @@ import { ApprovalService } from '../approval/approval.service';
         MatGridListModule,
         MatSnackBarModule,
         MatTooltipModule,
-        ChartsModule
+        ChartsModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     declarations: [
         LogeffortComponent,
         ApprovalComponent,
-        ReportsComponent,
+        MyProjectListComponent,
+        AboutUsComponent,
+        EditProfileComponent,
+        OrganizationComponent,
+        ApproveCmsComponent,
+
     ],
     providers: [
         DashService,
         LogeffortService,
         ApprovalService,
-        //DashResolve,
-        SharedService
+       EditProfileService,
+      ApproveCmsService,
+       OrganizationService,
+
+       LoginComponent,
+        SharedService,
+        MatDatepickerModule
     ]
 })
 export class DashModule { }

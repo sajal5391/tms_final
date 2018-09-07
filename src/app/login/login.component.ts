@@ -53,12 +53,14 @@ export class LoginComponent implements OnInit {
 						if(response['status'] == 'true'){
 							localStorage.setItem('employeeInfo', JSON.stringify(response['data']));
 							this.loginService.setUserLoggedIn(true);
-							this.router.navigate(['/dash'], { replaceUrl: true }); //remove login page from history
+							this.router.navigate(['/dash'], { replaceUrl: true });
+							window.location.reload(); //remove login page from history
 						} else {
 							console.log('Login failed', response);
 							this.loginService.setUserLoggedIn(false);
 							this.openNotificationbar(response['message'], 'Close');
 						}
+						this.loaderService.hide();
 					}, (err) => {
 						console.error('something does not look good',err);
 						this.loaderService.hide();
@@ -69,6 +71,7 @@ export class LoginComponent implements OnInit {
 		} else {
 			this.openNotificationbar('Username and Password are required', 'Close');
 		}
+	
 	}
 
 	ngOnInit() {

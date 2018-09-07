@@ -1,0 +1,92 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="15px" fxLayoutAlign="center" style="background-color:transparent; margin-top:40px;">
+    <div fxFlex="96%">
+  
+      <mat-card style="padding: 0; margin-bottom: 20px" class="active">
+        <mat-card-header style="background-color: rgb(0, 0, 0, 0.04)">
+          <h4 style="margin: 10px;">Organization Chart</h4>
+        </mat-card-header>
+        <mat-card-content style="padding: 5px;">
+
+            <div fxFlex="15%" style=" background-color:rgba(0,0,0,.04); display: flex;
+            margin-left:40%;
+             align-items: center; padding:10px 0 10px 0;border-style:outset">
+          <label style="justify-content: center;text-align:center;margin-left:25%"><b>MPS Department</b><br>{{total_count}}</label>
+             </div>
+           
+             <div class="vl" style="border-left: 1px solid black; height: 60px;margin-left:48%"></div>
+             
+             <mat-divider style="width:90%;margin-left:5%"></mat-divider>
+             <div class="container" fxLayout="row" fxLayout.xs="column">
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:5%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              
+              
+             </div>
+             
+             
+
+             <br>
+          <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+          
+            <div fxFlex="10%" style=" background-color:rgba(0,0,0,.04); display: flex;
+            justify-content: left;
+            align-items: center; padding:10px 0 10px 0;border-style:outset" *ngFor="let values of group_details; let k = index">
+            <label style="justify-content: center;text-align:center;margin-left:20%"><label>{{values.name}}<br></label>{{values.count}}</label>
+          
+          </div>
+         
+     
+          </div>
+
+          <div class="container" fxLayout="row" fxLayout.xs="column">
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:5%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:8%"></div>
+              <div class="vl" style="border-left: 1px solid black; height: 15px;margin-left:10%"></div>
+              
+             </div>
+
+
+          <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+          
+              <div fxFlex="10%" style=" display: flex;
+              justify-content: left;
+               padding:10px 0 10px 0;" *ngFor="let key of domains; let k = index">
+              <mat-list role="list">
+                  <mat-list-item role="listitem"  *ngFor="let values1 of domains[k]">
+             <div style="background-color:rgba(0,0,0,.04);border-style:outset;width:140%">  
+               <label style="font-size: 11px">{{values1}}</label>
+                </div>  
+                </mat-list-item>
+              
+                </mat-list>
+               
+            </div>
+         
+      </div>
+
+        </mat-card-content>
+  
+      </mat-card>
+  
+  
+    </div>
+  </div>

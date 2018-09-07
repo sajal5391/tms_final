@@ -15,8 +15,29 @@ export class EmployeeProfileComponent {
   // onNoClick(): void {
   //   this.dialogRef.close();
   // }
+ group:any;
+ domains=[];
+ selectedGroup : any;
+ empDetails:any;
+ empData = {
+   empID:'',empName:'',empEmailID:'',empDesignation:'',empNumber:'',empGroup:'',empDomain:''
+   ,empApprover1:'',empApprover2:''
+ };
 
-  ngOnInit() {
+ select(val:any){
+   console.log(this.group);
+   var name = this.group;
+
+   if(name == "MPS-1"){
+     this.domains=['Model Team India' , 'Model Team AME' , 'Integration' , 'COTA/FOTA' , 'Build & Release'];
+   }
+ }
+
+ showEmpDetails(obj){
+  console.log("show data" , obj);
+ }
+
+ ngOnInit() {
+
   }
-
 }

@@ -1,54 +1,89 @@
 <mat-toolbar style="height: 100px;background-color:#C3003C;" class="mat-elevation-z6">
-    <button class="hamburger mat-button" mat-button="" (click)="sidenav.toggle()" matTooltip="Side menu">
-        <mat-icon class="mat-icon" role="img" svgicon="menu" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24">
-                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-            </svg>
-        </mat-icon>
-    </button>
-    <!-- <img src="/TMS2/assets/img/lg.png" width="80" height="80" alt="" style="cursor:pointer" matTooltip="Home"> -->
-    <h1 class="mat-display-1" style="width:150px; display: inline-block; font-size:1.8em;color:white; margin-left: 10px">TMS</h1>
+    <!-- <button class="hamburger mat-button" mat-button="" (click)="sidenav.toggle()" matTooltip="Side menu" *ngIf="window.showSidenav">
+            <mat-icon class="mat-icon" role="img" svgicon="menu" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+            </mat-icon>
+        </button> -->
+    <a routerLink="./logeffort">
+        <img matListAvatar src="/TMS2/assets/img/lg.png" width="100" height="100" alt="logo" style="padding-top: 6px;">
+    </a>
+    <h1 class="mat-display-1" style="width:150px; display: inline-block; font-size:1.8em;color:white; margin-left: 10px; text-align: left">TMS</h1>
     <div style="color:white;">
         <a mat-button [matMenuTriggerFor]="menu" style="font-size: 16px">My Work
             <mat-icon>arrow_drop_down</mat-icon>
         </a>
         <mat-menu #menu="matMenu" [overlapTrigger]="false">
-            <button mat-menu-item [routerLink]="['logeffort']">Log Effort</button>
-<<<<<<< HEAD
-            <button mat-menu-item [routerLink]="['approval']">Approval</button>
-=======
-            <button mat-menu-item [routerLink]="['approval']" *ngIf="employee.empinfo.emp_role == ROLES.APPROVER || employee.empinfo.emp_role == ROLES.ADMIN">Approval</button>
->>>>>>> da87ba741a32241e4602307c613b069e8df2e8b9
-         </mat-menu>
-        <a mat-button [matMenuTriggerFor]="menu_reports" style="font-size: 16px">Reports
+            <button mat-menu-item routerLink="./logeffort">Log Effort</button>
+            <button mat-menu-item routerLink="./approval" *ngIf="employee.empinfo.emp_role == ROLES.APPROVER || employee.empinfo.emp_role == ROLES.ADMIN">Approval</button>
+            <button mat-menu-item routerLink="./my-project-list">My Project List</button>
+        </mat-menu>
+        <a mat-button [matMenuTriggerFor]="reportMenu" style="font-size: 16px">Reports
             <mat-icon>arrow_drop_down</mat-icon>
         </a>
-        <mat-menu #menu_reports="matMenu" [overlapTrigger]="false">
-        <button mat-menu-item [routerLink]="['reports']">Personal Log Analysis</button>
-        <button mat-menu-item [routerLink]="['reports']">Team Log Analysis</button>
-        <button mat-menu-item [routerLink]="['reports']">Domain Log Analysis</button>
-        <button mat-menu-item [routerLink]="['reports']">Department Log Analysis</button>
+        <mat-menu #reportMenu="matMenu" [overlapTrigger]="false">
+           
+    <a matLine href="http://si-ramesh86:8080/TMS2/api/reports/html/01-08-2018" target="_blank" ><label style="background-color: rgb(202, 199, 199);margin-left:10%">Compliance</label></a>  
+    
         </mat-menu>
-        <a mat-button style="font-size: 16px">Monitoring</a>
+        <!-- *ngIf="employee.empinfo.emp_role == ROLES.ADMIN" -->
+        <a mat-button [matMenuTriggerFor]="adminmenu" style="font-size: 16px" *ngIf="employee.empinfo.emp_role == ROLES.ADMIN">Admin
+            <mat-icon>arrow_drop_down</mat-icon>
+        </a>
+        <mat-menu #adminmenu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item routerLink="../admin/project-status">Project Status</button>
+            <button mat-menu-item routerLink="../admin/job-task-list">Job Task List</button>
+          <button mat-menu-item routerLink="../admin/admin-edit-employee">Edit Employee</button> 
+          <button mat-menu-item routerLink="../admin/add-employee">Add New Employee</button>
+          <button mat-menu-item routerLink="../admin/update-data" [matMenuTriggerFor]="updateData">Update Data</button>
+        </mat-menu>
+
+        <mat-menu #updateData="matMenu">
+            <button mat-menu-item routerLink="../admin/languages">Programming Languages</button>
+            <button mat-menu-item >Holiday List</button>
+            <button mat-menu-item>SkillSet</button>
+            <button mat-menu-item>Exclude Emails</button>
+          </mat-menu>
+
+        <a mat-button [matMenuTriggerFor]="menu1" style="font-size: 16px">CMS
+            <mat-icon>arrow_drop_down</mat-icon>
+        </a>
+        <mat-menu #menu1="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item routerLink="./edit-profile">My Profile</button>
+            <button mat-menu-item routerLink="./approve-cms">Approval</button>
+           
+       <!--     <button mat-menu-item routerLink="./edit-profile">MY Member List</button> -->
+        </mat-menu>
+        <a mat-button [matMenuTriggerFor]="menu2" style="font-size: 16px">Statistics
+            <mat-icon>arrow_drop_down</mat-icon>
+        </a>
+        <mat-menu #menu2="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item routerLink="./organization">Organization</button>
+            <button mat-menu-item routerLink="./edit-profile">Skill Map</button>
+            <button mat-menu-item routerLink="./add-employee">Language</button>  
+        </mat-menu>
     </div>
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav"  [fixedTopGap]="0" [fixedBottomGap]="0" style="overflow-x:hidden;">
+    <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav" [fixedTopGap]="0" [fixedBottomGap]="0" style="overflow-x:hidden;"
+        *ngIf="window.showSidenav">
         <mat-list class="side-list">
             <div mat-subheader class="list-divider" style="padding-top:4px;">
                 <h6 style="position: inline-block; color:lightgray;font-size: 14px;font-weight: 500;">PROFILE</h6>
                 <span fxFlex></span>
-                <button mat-button color="accent" style="min-width:auto; margin-top:8px;" (click)="openDialog()" >edit</button>
+           <!--    <button mat-button color="accent" style="min-width:auto; margin-top:8px;" (click)="openDialog()">edit</button> -->
             </div>
             <mat-list-item class="list-item">
-                <img matListAvatar src="/TMS2/assets/img/men.jpg" alt="men">
+                <img matListAvatar src="/TMS2/assets/img/user.png" alt="men">
                 <h4 mat-line> {{employee.empinfo.emp_name}} </h4>
                 <p mat-line> {{employee.empinfo.emp_id}} </p>
             </mat-list-item>
             <mat-list-item class="list-item">
                 <mat-icon mat-list-icon class="list-font">code</mat-icon>
-                <h4 mat-line>{{employee.skill.primary_skill_three}}</h4>
+                <h4 mat-line [matTooltip]="(employee.skill.primary_skill_three.length > 13) ? employee.skill.primary_skill_three : ''" [matTooltipClass]="'tooltip'">{{employee.skill.primary_skill_three}}</h4>
+                <!-- <marquee mat-line behavior="alternate">{{employee.skill.primary_skill_three}}</marquee> -->
                 <p mat-line>Primary Skill</p>
             </mat-list-item>
             <mat-list-item class="list-item">
@@ -66,22 +101,25 @@
                 <a matLine href="">FAQ</a>
             </mat-list-item>
             <mat-list-item class="list-item">
-                <mat-icon mat-list-icon class="list-font">info_outline</mat-icon>
-                <a matLine href="">Help</a>
-            </mat-list-item>
-            <mat-list-item class="list-item">
                 <mat-icon mat-list-icon class="list-font">book</mat-icon>
                 <a matLine href="">Manual</a>
+            </mat-list-item>
+            <mat-list-item class="list-item">
+                <mat-icon mat-list-icon class="list-font">group</mat-icon>
+                <a matLine routerLink="./about">About Us</a>
+            </mat-list-item>
+            <mat-list-item class="list-item">
+                <mat-icon mat-list-icon class="list-font">bug_report</mat-icon>
+                <a matLine href="http://collab.lge.com/main/pages/viewpage.action?pageId=868797934" target="_blank">Report a Bug</a>
+            </mat-list-item>
+            <mat-list-item class="list-item" style="cursor: pointer;">
+                <mat-icon mat-list-icon class="list-font">exit_to_app</mat-icon>
+                <a matLine (click)="logout()" >Logout</a>
             </mat-list-item>
         </mat-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <!-- <p >
-            <button mat-button (click)="sidenav.toggle()">Toggle</button>
-        </p> -->
         <router-outlet></router-outlet>
-
-
     </mat-sidenav-content>
 </mat-sidenav-container>

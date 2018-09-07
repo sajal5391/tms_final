@@ -1,12 +1,12 @@
 .navigation.navigation-prev {
-    left: 0;
+    left: 227px;
 }
 .navigation.navigation-next {
     right: 0;
 }
 .navigation {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 100px;
     bottom: 0;
     margin: 0;
     max-width: 120px;
@@ -22,6 +22,7 @@
     -moz-transition: all 350ms ease;
     -o-transition: all 350ms ease;
     transition: all 350ms ease;
+    background-color: rgba(0,0,0,.10);
 }
 
 .navigation:hover, .navigation-prev:hover, .navigation-next:hover a{
@@ -40,15 +41,16 @@
     min-width: 100px !important;
     color: #C3003C;
     border-color: #C3003C;
+    background-color: rgba(0,0,0,.10)!important;
 }
 
 /* Styles for the ink bar */
 :host ::ng-deep .mat-ink-bar {
     background-color: #C3003C!important;
 }
-.without::-webkit-datetime-edit-ampm-field {
+/* .without::-webkit-datetime-edit-ampm-field {
     display: none;
-  }
+  } */
 
   :host ::ng-deep .mat-select-value-text{
     color: #C3003C;
@@ -62,6 +64,10 @@
     border-color: #C3003C;
 }
 
+:host ::ng-deep .mat-select-content.mat-optgroup-label{
+    color: palevioletred!important;
+}
+
 /* /deep/ .mat-form-field-wrapper{
     font-size: 4px!important; this is just a workaround
     padding-bottom: 0.8em!important;
@@ -72,4 +78,56 @@
   height: 95%!important;
   padding: 0;
 }
-    
+
+:host ::ng-deep .mat-expansion-panel-content:not(.mat-expanded) {
+    height: 0px;
+    visibility: hidden;
+}
+
+.mat-expansion-panel-header {
+  /* height: 48px; */
+  min-height: 48px;
+  height: auto!important;
+}
+:host ::ng-deep .mat-expansion-panel-content:not(.mat-expanded):not(.ng-animating){
+  display: none;
+}
+
+.hours-mins{
+    font: inherit;
+    background: 0 0;
+    border: none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+}
+
+.note {
+    color: #fff;
+    background: #C3003C;
+    overflow: hidden;
+    width:100px;
+    -ms-transform: rotate(-20deg); /* IE 9 */
+    -webkit-transform: rotate(-20deg); /* Safari */
+    transform: rotate(-20deg); /* Standard syntax */
+  }
+  
+  .note:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 16px 16px 0;
+    border-style: solid;
+    border-color: #fff #fff #C3003C #C3003C;
+    background: #C3003C;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    /* Firefox 3.0 damage limitation */
+    display: block; width: 0;
+  }

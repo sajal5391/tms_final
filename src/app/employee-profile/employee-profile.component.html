@@ -1,3 +1,136 @@
-<p>
-  employee-profile works!
-</p>
+<h2 mat-dialog-title>Employee Details</h2>
+
+<mat-dialog-content >
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+        
+  <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+  justify-content: left;
+  align-items: center; padding:10px 0 10px 0;">
+  <mat-form-field style="font-size: 0.9em; width:100%">
+    <input matInput placeholder="Employee Id">
+  </mat-form-field>
+</div>
+<div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+  justify-content: left;
+  align-items: center; padding:10px 0 10px 0;">
+  <mat-form-field style="font-size: 0.9em; width:100%">
+    <input matInput placeholder="Employee Designation">
+  </mat-form-field>
+</div>
+<div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+  justify-content: left;
+  align-items: center; padding:10px 0 10px 0;">
+  <mat-form-field style="font-size: 0.9em; width:100%">
+      <mat-select placeholder="Group" [(value)]="group" (change)="select($event)">
+          <mat-option value="MPS-1">MPS-1</mat-option>
+          <mat-option value="MPS-2">MPS-2</mat-option>
+          <mat-option value="MPS-3">MPS-3</mat-option>
+          <mat-option value="MPS-4">MPS-4</mat-option>
+          <mat-option value="MPS-5">MPS-5</mat-option>
+          <mat-option value="MPS-6">MPS-6</mat-option>
+        </mat-select>
+  </mat-form-field>
+</div>
+<div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+  justify-content: left;
+  align-items: center; padding:10px 0 10px 0;">
+  <mat-form-field style="font-size: 0.9em; width:100%">
+      <mat-select placeholder="Domain">
+          <mat-option *ngFor="let domain of domains" value={{domain}}>{{domain}}</mat-option>
+        </mat-select>
+  </mat-form-field>
+</div>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+        
+    <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+    justify-content: left;
+    align-items: center; padding:10px 0 10px 0;">
+    <mat-form-field style="font-size: 0.9em; width:100%">
+        <mat-select placeholder="Primary Skill">
+            <mat-option *ngFor="let domain of domains" value={{domain}}>{{domain}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+    justify-content: left;
+    align-items: center; padding:10px 0 10px 0;">
+    <mat-form-field style="font-size: 0.9em; width:100%">
+        <mat-select placeholder="Secondary Skill">
+            <mat-option *ngFor="let domain of domains" value={{domain}}>{{domain}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+    justify-content: left;
+    align-items: center; padding:10px 0 10px 0;">
+    <mat-form-field style="font-size: 0.9em; width:100%">
+        <mat-select placeholder="Language1" [(value)]="group" (change)="select($event)">
+            <mat-option value="C">C</mat-option>
+            <mat-option value="C++">C++</mat-option>
+            <mat-option value="Java">Java</mat-option>
+          </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+    justify-content: left;
+    align-items: center; padding:10px 0 10px 0;">
+    <mat-form-field style="font-size: 0.9em; width:100%">
+        <mat-select placeholder="Language1 Level" [(value)]="group" (change)="select($event)">
+            <mat-option value="Beginner">Beginner</mat-option>
+            <mat-option value="Intermediate">Intermediate</mat-option>
+            <mat-option value="Expert">Expert</mat-option>
+          </mat-select>
+    </mat-form-field>
+  </div>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding: 5px;">
+        
+      <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+      justify-content: left;
+      align-items: center; padding:10px 0 10px 0;">
+      <mat-form-field style="font-size: 0.9em; width:100%">
+          <mat-select placeholder="Language2" [(value)]="group" (change)="select($event)">
+              <mat-option value="C">C</mat-option>
+              <mat-option value="C++">C++</mat-option>
+              <mat-option value="Java">Java</mat-option>
+            </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+      justify-content: left;
+      align-items: center; padding:10px 0 10px 0;">
+      <mat-form-field style="font-size: 0.9em; width:100%">
+          <mat-select placeholder="Language2 Level" [(value)]="group" (change)="select($event)">
+              <mat-option value="Beginner">Beginner</mat-option>
+              <mat-option value="Intermediate">Intermediate</mat-option>
+              <mat-option value="Expert">Expert</mat-option>
+            </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+      justify-content: left;
+      align-items: center; padding:10px 0 10px 0;">
+      <mat-form-field style="font-size: 0.9em; width:100%">
+          
+              <input matInput placeholder="Approver1">
+          </mat-form-field>
+
+    </div>
+    <div fxFlex="25%" style=" background-color:rgba(0,0,0,.04); display: flex;
+      justify-content: left;
+      align-items: center; padding:10px 0 10px 0;">
+      <mat-form-field style="font-size: 0.9em; width:100%">
+          <input matInput placeholder="Approver2">
+      </mat-form-field>
+    </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions style="float: right;">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog.  [disabled]="data.comment.comments == ''" -->
+    <button mat-raised-button color="primary">Submit</button>
+</mat-dialog-actions>

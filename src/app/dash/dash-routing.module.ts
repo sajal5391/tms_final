@@ -3,23 +3,41 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LogeffortComponent } from '../logeffort/logeffort.component';
 import { ApprovalComponent } from '../approval/approval.component';
-import { ReportsComponent } from '../reports/reports.component';
+import { MyProjectListComponent } from '../my-project-list/my-project-list.component';
+import { AboutUsComponent } from '../about-us/about-us.component';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { AddEmployeeComponent } from '../add-employee/add-employee.component';
+import { OrganizationComponent } from '../organization/organization.component';
+import { ApproveCmsComponent } from '../approve-cms/approve-cms.component';
 
 
 const dashRoutes: Routes = [
     { 
         path: 'logeffort', 
         component: LogeffortComponent 
-    },
-    { 
+    }, { 
         path: 'approval', 
-        component: ApprovalComponent 
-    },
-    { 
-        path: 'reports', 
-        component: ReportsComponent 
-    },
-
+        component: ApprovalComponent
+    }, { 
+        path: 'my-project-list', 
+        component: MyProjectListComponent
+    }, { 
+        path: 'edit-profile', 
+        component: EditProfileComponent
+    }, { 
+        path: 'add-employee', 
+        component: AddEmployeeComponent
+    },{ 
+        path: 'approve-cms', 
+        component: ApproveCmsComponent
+    },{ 
+        path: 'organization', 
+        component: OrganizationComponent
+    },  { 
+        path: 'about', 
+        component: AboutUsComponent
+    }
+   
 ];
 
 //taken from angular.io

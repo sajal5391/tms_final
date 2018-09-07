@@ -5,6 +5,7 @@
     left: 0;
     right: 0;
     background-color: transparent;
+    -ms-overflow-style: none;
   }
   
   .example-sidenav {
@@ -12,22 +13,22 @@
     align-items: center;
     justify-content: center;
     min-width: 227px;
-    /* width: auto; */
     background: #333;
     padding: 10px;
+    -ms-overflow-style: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
   }
 
   .side-list{
-      /* padding-top: 0;
-      margin-top: 0; */
       position: absolute;
       top: 0;
       left: 0;
       width:100%;
   }
-  /* .mat-list-icon {
-    color: rgba(0, 0, 0, 0.54);
-  } overide with .list-font */
 
   .list-divider{
     background-color:#121212; 
@@ -50,7 +51,7 @@
   .list-expansion:hover{
     background-color: #292929;
   }
-  :host /deep/ .mat-expansion-indicator:after{
+  :host ::ng-deep .mat-expansion-indicator:after{
       color: #3f51B5;
   }
 
